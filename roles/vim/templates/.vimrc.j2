@@ -1,0 +1,34 @@
+" {{ ansible_managed }}
+
+set nocompatible                  " be iMproved
+filetype off                      " required for Vundle
+syntax on
+set backspace=indent,eol,start
+
+" search
+set incsearch
+set hlsearch
+
+" tabs and spaces
+set shiftwidth=2 
+set tabstop=2 
+set softtabstop=2 
+set expandtab 
+
+set number
+set ruler
+
+set mouse=a
+
+set encoding=UTF-8
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'scrooloose/nerdtree'
+call vundle#end()
+
+filetype plugin indent on
+
+map <F2> :NERDTreeToggle<CR>

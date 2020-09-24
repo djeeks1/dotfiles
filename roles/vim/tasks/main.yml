@@ -1,0 +1,13 @@
+---
+- name: Install Vim
+  become: true
+  apt:
+    name: vim
+    state: present
+    update_cache: true
+
+- name: Configure Vim
+  template: 
+    src: .vimrc.j2
+    dest: ~/.vimrc
+    mode: 0640
