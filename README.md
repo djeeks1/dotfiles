@@ -9,6 +9,10 @@ This repository uses ansible to deploy the workstation configuration. Here is wh
 
 ## Usage
 
+Clone the repository, cd into your local copy and then lanch the playbook :
+```shell
+ansible-playbook -i hosts playbook.yml
+```
 
 ## Requirements
 
