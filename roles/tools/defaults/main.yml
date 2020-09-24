@@ -1,0 +1,28 @@
+---
+default_packages:
+  - bash-completion
+  - build-essential
+  - ca-certificates
+  - ccze
+  - cups
+  - curl
+  - dnsutils
+  - evince
+  - filezilla
+  - gdm3
+  - gnome-core
+  - htop
+  - jq
+  - keepassxc
+  - libreoffice-calc
+  - libreoffice-writer
+  - lsb-release
+  - mtr
+  - strace
+  - tcpdump
+  - telnet
+  - terminator
+  - tig
+  - tree
+  - wget
+  - whois

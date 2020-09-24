@@ -1,0 +1,5 @@
+---
+- name: Configure the workstation
+  hosts: localhost
+  roles:
+    - tools
