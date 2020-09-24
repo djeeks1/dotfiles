@@ -1,0 +1,22 @@
+---
+- name: Install Starship Prompt
+  become: true
+  unarchive:
+    src: "{{ starship.url }}"
+    dest: /usr/local/bin
+    remote_src: yes
+    owner: root
+    group: staff
+    mode: 0755
+
+- name: Ensure .config directory exists
+  file:
+    path: ~/.config
+    state: directory
+    mode: 0750
+
+- name: Set Starship configuration
+  template:
+    src: .config/starship.toml.j2
+    dest: ~/.config/starship.toml
+    mode: 0640

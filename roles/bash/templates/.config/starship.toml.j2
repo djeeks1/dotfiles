@@ -1,0 +1,29 @@
+# {{ ansible_managed }}
+
+add_newline = false
+
+[character]
+symbol = "$"
+
+[hostname]
+ssh_only = false
+
+[username]
+show_always = true
+
+[directory]
+truncate_to_repo =false
+truncation_length=15
+
+[terraform]
+disabled = true
+
+[nodejs]
+disabled = true
+
+[java]
+disabled = true
+
+[[battery.display]]
+threshold = 20
+style = "bold red"

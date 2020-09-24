@@ -14,7 +14,7 @@ Clone the repository, cd into your local copy and then lanch the playbook :
 ansible-playbook -i hosts playbook.yml
 ```
 
-## Requirements
+## Requirements
 
 You will needed sudo rights and all ansible requirements :
 
