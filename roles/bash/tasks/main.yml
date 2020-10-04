@@ -9,6 +9,12 @@
     group: staff
     mode: 0755
 
+- name: Update .bashrc file
+  template:
+    src: .bashrc.j2
+    dest: ~/.bashrc
+    mode: 0640
+
 - name: Ensure .config directory exists
   file:
     path: ~/.config
