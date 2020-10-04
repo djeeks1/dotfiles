@@ -1,4 +1,11 @@
 ---
+- name: Setting /etc/apt/preferences
+  become: true
+  template:
+    src: etc/apt/preferences.j2
+    dest: /etc/apt/preferences
+    mode: 0644
+
 - name: Setting sources.list
   become: true
   template:
@@ -12,3 +19,17 @@
     name: "{{ default_packages }}"
     state: present
     update_cache: true
+
+- name: Remove Firefox ESR
+  become: true
+  apt:
+    name: firefox-esr
+    state: absent
+
+- name: Install Firefox from unstable repo
+  become: true
+  apt:
+    name: firefox
+    state: present
+    update_cache: true
+    default_release: unstable
