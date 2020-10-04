@@ -1,4 +1,6 @@
 ---
+vundle_version: "v0.10.2"
+
 linter_packages:
   - ansible-lint
   - flake8

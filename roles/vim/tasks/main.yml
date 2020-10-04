@@ -6,15 +6,32 @@
     state: present
     update_cache: true
 
-- name: Configure Vim
-  template:
-    src: .vimrc.j2
-    dest: ~/.vimrc
-    mode: 0640
-
 - name: Install linter
   become: true
   apt:
     name: "{{ linter_packages }}"
     state: present
     update_cache: true
+
+- name: Ensure bundle directory exists
+  file:
+    path: ~/.vim/bundle
+    state: directory
+    mode: 0750
+
+- name: Clone Vundle repository
+  git:
+    repo: https://github.com/VundleVim/Vundle.vim.git
+    dest: ~/.vim/bundle/Vundle.vim
+    update: yes
+    version: "{{ vundle_version }}"
+
+- name: Configure Vim
+  template:
+    src: .vimrc.j2
+    dest: ~/.vimrc
+    mode: 0640
+
+- name: Install Vim plugins via Vundle
+  command: 'vim +PluginInstall +qall'
+  changed_when: False
