@@ -33,3 +33,9 @@
     state: present
     update_cache: true
     default_release: unstable
+
+- name: Configure Git globally
+  template:
+    src: .gitconfig.j2
+    dest: ~/.gitconfig
+    mode: 0640
