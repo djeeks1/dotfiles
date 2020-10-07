@@ -6,6 +6,12 @@
     state: present
     update_cache: true
 
+- name: Update editor alternative
+  become: true
+  alternatives:
+    name: editor
+    path: /usr/bin/vim
+
 - name: Install linter
   become: true
   apt:
@@ -34,4 +40,4 @@
 
 - name: Install Vim plugins via Vundle
   command: 'vim +PluginInstall +qall'
-  changed_when: False
+  changed_when: false
