@@ -34,6 +34,27 @@
     update_cache: true
     default_release: unstable
 
+- name: Add Google repository
+  become: true
+  template:
+    src: etc/apt/sources.list.d/google.list.j2
+    dest: /etc/apt/sources.list.d/google.list
+    mode: 0644
+
+- name: Add Google repository's key
+  become: true
+  apt_key:
+    url: https://dl.google.com/linux/linux_signing_key.pub
+    id: 4CCA1EAF950CEE4AB83976DCA040830F7FAC5991
+    state: present
+
+- name: Install Google Chrome
+  become: true
+  apt:
+    name: google-chrome-stable
+    state: present
+    update_cache: true
+
 - name: Ensure .ssh directory exists
   file:
     path: ~/.ssh
