@@ -5,12 +5,16 @@
     name: vim
     state: present
     update_cache: true
+  tags:
+    - vim
 
 - name: Update editor alternative
   become: true
   alternatives:
     name: editor
     path: /usr/bin/vim
+  tags:
+    - vim
 
 - name: Install linter
   become: true
@@ -18,12 +22,16 @@
     name: "{{ linter_packages }}"
     state: present
     update_cache: true
+  tags:
+    - vim
 
 - name: Ensure bundle directory exists
   file:
     path: ~/.vim/bundle
     state: directory
     mode: 0750
+  tags:
+    - vim
 
 - name: Clone Vundle repository
   git:
@@ -31,13 +39,19 @@
     dest: ~/.vim/bundle/Vundle.vim
     update: yes
     version: "{{ vundle_version }}"
+  tags:
+    - vim
 
 - name: Configure Vim
   template:
     src: .vimrc.j2
     dest: ~/.vimrc
     mode: 0640
+  tags:
+    - vim
 
 - name: Install Vim plugins via Vundle
   command: 'vim +PluginInstall +qall'
   changed_when: false
+  tags:
+    - vim

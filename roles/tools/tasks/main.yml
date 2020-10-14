@@ -5,6 +5,9 @@
     src: etc/apt/preferences.j2
     dest: /etc/apt/preferences
     mode: 0644
+  tags:
+    - apt
+    - tools
 
 - name: Setting sources.list
   become: true
@@ -12,6 +15,9 @@
     src: etc/apt/sources.list.j2
     dest: /etc/apt/sources.list
     mode: 0644
+  tags:
+    - apt
+    - tools
 
 - name: Install packages
   become: true
@@ -19,12 +25,18 @@
     name: "{{ default_packages }}"
     state: present
     update_cache: true
+  tags:
+    - apt
+    - tools
 
 - name: Remove Firefox ESR
   become: true
   apt:
     name: firefox-esr
     state: absent
+  tags:
+    - firefox
+    - tools
 
 - name: Install Firefox from unstable repo
   become: true
@@ -33,6 +45,9 @@
     state: present
     update_cache: true
     default_release: unstable
+  tags:
+    - firefox
+    - tools
 
 - name: Add Google repository
   become: true
@@ -40,6 +55,9 @@
     src: etc/apt/sources.list.d/google.list.j2
     dest: /etc/apt/sources.list.d/google.list
     mode: 0644
+  tags:
+    - google-chrome
+    - tools
 
 - name: Add Google repository's key
   become: true
@@ -47,6 +65,9 @@
     url: https://dl.google.com/linux/linux_signing_key.pub
     id: 4CCA1EAF950CEE4AB83976DCA040830F7FAC5991
     state: present
+  tags:
+    - google-chrome
+    - tools
 
 - name: Install Google Chrome
   become: true
@@ -54,21 +75,33 @@
     name: google-chrome-stable
     state: present
     update_cache: true
+  tags:
+    - google-chrome
+    - tools
 
 - name: Ensure .ssh directory exists
   file:
     path: ~/.ssh
     state: directory
     mode: 0700
+  tags:
+    - ssh
+    - tools
 
 - name: Setting SSH options
   template:
     src: .ssh/config.j2
     dest: ~/.ssh/config
     mode: 0600
+  tags:
+    - ssh
+    - tools
 
 - name: Configure Git globally
   template:
     src: .gitconfig.j2
     dest: ~/.gitconfig
     mode: 0640
+  tags:
+    - git
+    - tools
