@@ -19,6 +19,7 @@ default_packages:
   - lsb-release
   - mtr
   - strace
+  - sysstat
   - tcpdump
   - telnet
   - terminator
