@@ -19,6 +19,14 @@
   tags:
     - bash
 
+- name: Update .profile file
+  template:
+    src: .profile.j2
+    dest: ~/.profile
+    mode: 0640
+  tags:
+    - bash
+
 - name: Ensure .config directory exists
   file:
     path: ~/.config
