@@ -2,12 +2,14 @@
 vundle_version: "v0.10.2"
 
 linter_packages:
-  - ansible-lint
   - flake8
   - libb-lint-perl
   - nslint
   - puppet-lint
-  - pylint3
   - shellcheck
   - weblint-perl
+
+linter_pip_packages:
+  - ansible-lint
+  - pylint
   - yamllint

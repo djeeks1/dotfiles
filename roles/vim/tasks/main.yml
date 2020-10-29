@@ -25,6 +25,14 @@
   tags:
     - vim
 
+- name: Install linter (via pip)
+  pip:
+    name: "{{ linter_pip_packages }}"
+    state: present
+    extra_args: --user
+  tags:
+    - vim
+
 - name: Ensure bundle directory exists
   file:
     path: ~/.vim/bundle
