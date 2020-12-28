@@ -12,12 +12,14 @@ default_packages:
   - gdm3
   - gnome-core
   - htop
+  - ipcalc
   - jq
   - keepassxc
   - libreoffice-calc
   - libreoffice-writer
   - lsb-release
   - mtr
+  - pwgen
   - strace
   - sysstat
   - tcpdump
