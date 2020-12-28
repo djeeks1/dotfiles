@@ -17,6 +17,7 @@ default_packages:
   - keepassxc
   - libreoffice-calc
   - libreoffice-writer
+  - locate
   - lsb-release
   - mtr
   - pwgen
