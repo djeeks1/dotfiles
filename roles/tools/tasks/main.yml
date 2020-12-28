@@ -105,3 +105,27 @@
   tags:
     - git
     - tools
+
+- name: Correct middle-click paste issue in Terminator
+  become: true
+  lineinfile:
+    path: /usr/lib/python3/dist-packages/terminatorlib/terminal.py
+    regexp: "use_primary.*WAYLAND"
+    state: absent
+  tags:
+    - terminator
+    - tools
+
+- name: Correct middle-click paste issue in Terminator
+  become: true
+  lineinfile:
+    path: /usr/lib/python3/dist-packages/terminatorlib/terminal.py
+    regexp: "{{ item.regexp }}"
+    line: "{{ item.line }}"
+    state: present
+  loop:
+    - { regexp: "right_click.*use_primary", line: "            right_click = [self.paste_clipboard, (True, )]" }
+    - { regexp: "middle_click.*use_primary", line: "            middle_click = [self.paste_clipboard, (True, )]" }
+  tags:
+    - terminator
+    - tools
