@@ -33,3 +33,4 @@ default_packages:
   - tree
   - wget
   - whois
+  - xtightvncviewer
