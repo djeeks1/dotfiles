@@ -105,3 +105,10 @@
   tags:
     - git
     - tools
+
+- name: Correct Ctrl+Shift+E issue in Terminator
+  shell:
+    cmd: gsettings set org.freedesktop.ibus.panel.emoji hotkey '[]'
+  tags:
+    - terminator
+    - tools
