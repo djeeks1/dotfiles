@@ -11,6 +11,15 @@
   tags:
     - bash
 
+- name: Install PowerLine fonts
+  become: true
+  apt:
+    name: fonts-powerline
+    state: present
+    update_cache: yes
+  tags:
+    - bash
+
 - name: Update .bashrc file
   template:
     src: .bashrc.j2
