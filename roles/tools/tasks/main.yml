@@ -106,6 +106,15 @@
     - git
     - tools
 
+- name: Configure Terminator
+  template:
+    src: .config/terminator/config.j2
+    dest: ~/.config/terminator/config
+    mode: 0644
+  tags:
+    - terminator
+    - tools
+
 - name: Correct Ctrl+Shift+E issue in Terminator
   shell:
     cmd: gsettings set org.freedesktop.ibus.panel.emoji hotkey '[]'
