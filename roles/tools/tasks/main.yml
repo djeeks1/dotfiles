@@ -52,8 +52,8 @@
 - name: Add Google repository
   become: true
   template:
-    src: etc/apt/sources.list.d/google.list.j2
-    dest: /etc/apt/sources.list.d/google.list
+    src: etc/apt/sources.list.d/google-chrome.list.j2
+    dest: /etc/apt/sources.list.d/google-chrome.list
     mode: 0644
   tags:
     - google-chrome
