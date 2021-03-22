@@ -25,6 +25,7 @@ default_packages:
   - ncdu
   - nmap
   - pwgen
+  - screen
   - sslscan
   - strace
   - sysstat
