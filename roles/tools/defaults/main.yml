@@ -9,6 +9,9 @@ default_packages:
   - dnsutils
   - evince
   - filezilla
+  - firmware-linux
+  - firmware-linux-free
+  - firmware-linux-nonfree
   - gdm3
   - gnome-core
   - gnome-screenshot
