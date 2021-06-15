@@ -44,7 +44,6 @@
     name: firefox
     state: present
     update_cache: true
-    default_release: unstable
   tags:
     - firefox
     - tools
