@@ -1,5 +1,6 @@
 ---
 default_packages:
+  - apt-transport-https
   - bash-completion
   - build-essential
   - ca-certificates
