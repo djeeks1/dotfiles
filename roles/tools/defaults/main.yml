@@ -30,6 +30,7 @@ default_packages:
   - ncdu
   - nmap
   - pwgen
+  - python3-pip
   - screen
   - sslscan
   - strace
