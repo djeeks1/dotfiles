@@ -22,17 +22,18 @@ default_packages:
   - ipcalc
   - jq
   - keepassxc
+  - kitty
   - locate
   - lsb-release
   - mtr
   - ncdu
   - network-manager
   - nmap
+  - psmisc
   - pulseaudio
   - pwgen
   - python3-pip
   - rofi
-  - rxvt-unicode
   - screen
   - sslscan
   - strace
