@@ -29,6 +29,7 @@ default_packages:
   - ncdu
   - network-manager
   - nmap
+  - polybar
   - psmisc
   - pulseaudio
   - pwgen
