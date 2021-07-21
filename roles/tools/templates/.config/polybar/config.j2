@@ -53,7 +53,7 @@ font-1 = FontAwesome:size=10
 font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
 
 modules-left = i3
-modules-center =
+modules-center = mpd
 modules-right = volume xkeyboard battery date time powermenu
 
 tray-position = right
@@ -111,6 +111,19 @@ ws-icon-0 = 1;
 ws-icon-1 = 2;
 ws-icon-2 = 3;
 ws-icon-3 = 4;
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 50
+label-song-ellipsis = true
 
 [module/date]
 type = internal/date
