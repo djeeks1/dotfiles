@@ -54,7 +54,7 @@ font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
 
 modules-left = i3
 modules-center =
-modules-right = xbacklight volume xkeyboard battery date time powermenu
+modules-right = volume xkeyboard battery date time powermenu
 
 tray-position = right
 tray-padding = 2
@@ -111,23 +111,6 @@ ws-icon-0 = 1;
 ws-icon-1 = 2;
 ws-icon-2 = 3;
 ws-icon-3 = 4;
-
-[module/xbacklight]
-type = internal/xbacklight
-
-format = <label> <bar>
-label = BL
-
-bar-width = 10
-bar-indicator = |
-bar-indicator-foreground = #fff
-bar-indicator-font = 2
-bar-fill = ─
-bar-fill-font = 2
-bar-fill-foreground = #9f78e1
-bar-empty = ─
-bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
 
 [module/date]
 type = internal/date
