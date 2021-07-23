@@ -105,7 +105,7 @@
     - git
     - tools
 
-- name: Ensure .config directory exists
+- name: Create polybar folders
   file:
     path: "{{ item }}"
     state: directory
@@ -132,6 +132,7 @@
     state: directory
     mode: 0750
   loop:
+    - ~/,config
     - ~/.config/ncmpcpp
     - ~/.mpd
     - ~/.mpd/playlists
@@ -169,4 +170,25 @@
     mode: 0640
   tags:
     - mpd
+    - tools
+
+- name: Create kitty folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0750
+  loop:
+    - ~/.config
+    - ~/.config/kitty
+  tags:
+    - kitty
+    - tools
+
+- name: Deploy kitty config file
+  template:
+    src: .config/kitty/kitty.conf.j2
+    dest: ~/.config/kitty/kitty.conf
+    mode: 0640
+  tags:
+    - kitty
     - tools
