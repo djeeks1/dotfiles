@@ -135,6 +135,24 @@
     - i3
     - tools
 
+- name: Deploy rofi config file
+  template:
+    src: .Xresources.j2
+    dest: ~/.Xresources
+    mode: 0640
+  register: xresources
+  tags:
+    - i3
+    - tools
+
+- name: Load Xresources file
+  shell: 
+    cmd: xrdb ~/.Xresources
+  when: xresources.changed
+  tags:
+    - i3
+    - tools
+
 - name: Create polybar folders
   file:
     path: "{{ item }}"
