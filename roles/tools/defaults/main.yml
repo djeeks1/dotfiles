@@ -43,6 +43,7 @@ default_packages:
   - sysstat
   - tcpdump
   - telnet
+  - thunar
   - traceroute
   - tig
   - tree
