@@ -10,38 +10,48 @@ default_packages:
   - curl
   - dnsutils
   - evince
+  - feh
   - filezilla
   - firmware-linux
   - firmware-linux-free
   - firmware-linux-nonfree
-  - gdm3
-  - gnome-core
-  - gnome-screenshot
+  - flameshot
+  - fonts-font-awesome
   - htop
   - hyphen-fr
+  - i3
   - ipcalc
   - jq
   - keepassxc
+  - kitty
   - libreoffice-calc
   - libreoffice-writer
+  - lightdm
   - locate
   - lsb-release
+  - mpd
   - mtr
   - ncdu
+  - ncmpcpp
+  - network-manager
   - nmap
+  - polybar
+  - psmisc
+  - pulseaudio
   - pwgen
   - python3-pip
+  - rofi
   - screen
   - sslscan
   - strace
   - sysstat
   - tcpdump
   - telnet
-  - terminator
+  - thunar
   - traceroute
   - tig
   - tree
   - vlc
   - wget
   - whois
-  - xtightvncviewer
+  - xorg

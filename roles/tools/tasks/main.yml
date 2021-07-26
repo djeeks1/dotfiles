@@ -87,7 +87,7 @@
     - ssh
     - tools
 
-- name: Setting SSH options
+- name: Set SSH options
   template:
     src: .ssh/config.j2
     dest: ~/.ssh/config
@@ -105,18 +105,138 @@
     - git
     - tools
 
-- name: Configure Terminator
-  template:
-    src: .config/terminator/config.j2
-    dest: ~/.config/terminator/config
-    mode: 0644
+- name: Create i3 folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0750
+  loop:
+    - ~/.config
+    - ~/.config/i3
   tags:
-    - terminator
+    - i3
     - tools
 
-- name: Correct Ctrl+Shift+E issue in Terminator
-  shell:
-    cmd: gsettings set org.freedesktop.ibus.panel.emoji hotkey '[]'
+- name: Copy i3 wallpaper
+  copy:
+    src: Downloads/wallpaper.png
+    dest: ~/Downloads/wallpaper.png
+    mode: 0644
   tags:
-    - terminator
+    - i3
+    - tools
+
+- name: Deploy i3 config file
+  template:
+    src: .config/i3/config.j2
+    dest: ~/.config/i3/config
+    mode: 0640
+  tags:
+    - i3
+    - tools
+
+- name: Deploy rofi config file
+  template:
+    src: .Xresources.j2
+    dest: ~/.Xresources
+    mode: 0640
+  register: xresources
+  tags:
+    - i3
+    - tools
+
+- name: Load Xresources file
+  shell: 
+    cmd: xrdb ~/.Xresources
+  when: xresources.changed
+  tags:
+    - i3
+    - tools
+
+- name: Create polybar folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0750
+  loop:
+    - ~/.config
+    - ~/.config/polybar
+  tags:
+    - polybar
+    - tools
+
+- name: Deploy polybar config file
+  template:
+    src: .config/polybar/config.j2
+    dest: ~/.config/polybar/config
+    mode: 0640
+  tags:
+    - polybar
+    - tools
+
+- name: Create mpd folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0750
+  loop:
+    - ~/,config
+    - ~/.config/ncmpcpp
+    - ~/.mpd
+    - ~/.mpd/playlists
+    - ~/music
+  tags:
+    - mpd
+    - tools
+
+- name: Configure mpd
+  template:
+    src: .mpdconf.j2
+    dest: ~/.mpdconf
+    mode: 0640
+  tags:
+    - mpd
+    - tools
+
+- name: Disable system-wide mpd
+  become: true
+  systemd:
+    name: "{{ item }}"
+    state: stopped
+    enabled: no
+  loop:
+    - mpd.service
+    - mpd.socket
+  tags:
+    - mpd
+    - tools
+
+- name: Configure ncmpcpp
+  template:
+    src: .config/ncmpcpp/config.j2
+    dest: ~/.config/ncmpcpp/config
+    mode: 0640
+  tags:
+    - mpd
+    - tools
+
+- name: Create kitty folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0750
+  loop:
+    - ~/.config
+    - ~/.config/kitty
+  tags:
+    - kitty
+    - tools
+
+- name: Deploy kitty config file
+  template:
+    src: .config/kitty/kitty.conf.j2
+    dest: ~/.config/kitty/kitty.conf
+    mode: 0640
+  tags:
+    - kitty
     - tools
