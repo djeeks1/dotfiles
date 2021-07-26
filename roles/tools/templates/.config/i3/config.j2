@@ -181,4 +181,13 @@ bindsym $mod+r mode "resize"
 #bar {
 #        status_command i3status
 #}
-exec_always --no-startup-id "killall polybar; polybar -r default"
+exec_always --no-startup-id "killall polybar; polybar default"
+
+# class                 border  bground text    indicator child_border
+client.focused          #660000 #440000 #FDF6E3 #F32323   #440000
+client.focused_inactive #353535 #5F676A #FDF6E3 #5F676A   #5F676A
+client.unfocused        #353535 #222222 #888888 #222222   #222222
+client.urgent           #353535 #F32323 #FDF6E3 #F32323   #F32323
+client.placeholder      #000000 #0C0C0C #FDF6E3 #0c0c0c   #0C0C0C
+
+client.background       #FDF6E3
