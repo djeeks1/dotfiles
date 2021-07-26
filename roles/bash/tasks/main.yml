@@ -28,10 +28,10 @@
   tags:
     - bash
 
-- name: Update .profile file
+- name: Update PATH with user bin
   template:
-    src: .profile.j2
-    dest: ~/.profile
+    src: .xsessionrc.j2
+    dest: ~/.xsessionrc
     mode: 0640
   tags:
     - bash

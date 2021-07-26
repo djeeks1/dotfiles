@@ -15,6 +15,7 @@ default_packages:
   - firmware-linux
   - firmware-linux-free
   - firmware-linux-nonfree
+  - flameshot
   - fonts-font-awesome
   - htop
   - hyphen-fr
@@ -23,6 +24,9 @@ default_packages:
   - jq
   - keepassxc
   - kitty
+  - libreoffice-calc
+  - libreoffice-writer
+  - lightdm
   - locate
   - lsb-release
   - mpd
@@ -50,4 +54,3 @@ default_packages:
   - wget
   - whois
   - xorg
-  - xdm
