@@ -11,12 +11,15 @@
   tags:
     - bash
 
-- name: Install PowerLine fonts
+- name: Install glyph rendering fonts
   become: true
   apt:
-    name: fonts-powerline
+    name: "{{ item }}"
     state: present
     update_cache: yes
+  loop:
+    - fonts-powerline
+    - fonts-noto-color-emoji
   tags:
     - bash
 
