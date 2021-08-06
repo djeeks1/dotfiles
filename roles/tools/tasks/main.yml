@@ -113,6 +113,7 @@
   loop:
     - ~/.config
     - ~/.config/i3
+    - ~/Downloads
   tags:
     - i3
     - tools
@@ -146,7 +147,7 @@
     - tools
 
 - name: Load Xresources file
-  shell: 
+  shell:
     cmd: xrdb ~/.Xresources
   when: xresources.changed
   tags:
