@@ -1,6 +1,4 @@
 ---
-vundle_version: "v0.10.2"
-
 linter_packages:
   - flake8
   - libb-lint-perl
@@ -13,3 +11,17 @@ linter_pip_packages:
   - ansible-lint
   - pylint
   - yamllint
+
+vim_plugins:
+  indentLine:
+    url: https://github.com/Yggdroot/indentLine.git
+  tabular:
+    url: https://github.com/godlygeek/tabular.git
+  ale:
+    url: https://github.com/dense-analysis/ale.git
+  vim-fugitive:
+    url: https://github.com/tpope/vim-fugitive.git
+  vim-jinja:
+    url: https://github.com/lepture/vim-jinja.git
+  vim-markdown:
+    url: https://github.com/plasticboy/vim-markdown.git

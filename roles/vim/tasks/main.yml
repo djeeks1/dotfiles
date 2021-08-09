@@ -33,23 +33,6 @@
   tags:
     - vim
 
-- name: Ensure bundle directory exists
-  file:
-    path: ~/.vim/bundle
-    state: directory
-    mode: 0750
-  tags:
-    - vim
-
-- name: Clone Vundle repository
-  git:
-    repo: https://github.com/VundleVim/Vundle.vim.git
-    dest: ~/.vim/bundle/Vundle.vim
-    update: yes
-    version: "{{ vundle_version }}"
-  tags:
-    - vim
-
 - name: Configure Vim
   template:
     src: .vimrc.j2
@@ -58,8 +41,24 @@
   tags:
     - vim
 
-- name: Install Vim plugins via Vundle
-  command: 'vim +PluginInstall +qall'
-  changed_when: false
+- name: Create plugins folder
+  file:
+    path: "{{ item }}"
+    state: directory
+  loop:
+    - ~/.vim
+    - ~/.vim/pack
+    - ~/.vim/pack/plugins
+    - ~/.vim/pack/plugins/start
+  tags:
+    - vim
+
+- name: Install plugins
+  git:
+    repo: "{{ item.value.url }}"
+    dest: "~/.vim/pack/plugins/start/{{ item.key }}"
+    depth: 1
+  with_dict:
+    - "{{ vim_plugins }}"
   tags:
     - vim
