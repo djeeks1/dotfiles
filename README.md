@@ -2,10 +2,11 @@
 
 ## Description
 
-This repository uses ansible to deploy the workstation configuration. Here is what it installs and configure :
-* some usefull packages 
-* vim whith its configuration and plugins
-* customize bash and its prompt
+This repository uses ansible to deploy the workstation's configuration :
+* it sets the desktop environment (currently [i3](https://i3wm.org/))
+* it customizes the termninal and bash prompt (with [starship](https://starship.rs/) and [kitty](https://sw.kovidgoyal.net/kitty/))
+* it installs [vim](https://vimhelp.org/) with its configuration and plugins
+* it installs some other usefull packages
 
 ## Usage
 
@@ -16,8 +17,7 @@ ansible-playbook -i hosts playbook.yml
 
 ## Requirements
 
-You will needed sudo rights and all ansible requirements :
-
+You will needed sudo rights and ansible :
 ```shell
 user    ALL = NOPASSWD: ALL
 ```
