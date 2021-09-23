@@ -36,6 +36,7 @@ default_packages:
   - ncmpcpp
   - network-manager
   - nmap
+  - pavucontrol
   - polybar
   - psmisc
   - pulseaudio
