@@ -1,8 +1,8 @@
 " {{ ansible_managed }}
 
 set nocompatible                  " be iMproved
-filetype off                      " required for Vundle
 syntax on
+filetype plugin indent on
 set backspace=indent,eol,start
 set listchars=tab:→\ ,eol:↲,nbsp:␣,trail:•
 
@@ -11,31 +11,38 @@ set incsearch
 set hlsearch
 
 " tabs and spaces
-set shiftwidth=2 
-set tabstop=2 
-set softtabstop=2 
-set expandtab 
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set expandtab
 
 set number
-set ruler
+
+" statusline
+set statusline=
+set statusline+=%0*\[%n]                                  "buffernr
+set statusline+=%0*\ %<%F\                                "File+path
+set statusline+=%0*\ %m%r%w\                              "Modified? Readonly? Top/bot.
+set statusline+=%0*%=\ %y\                                "FileType
+set statusline+=%0*\ %{''.(&fenc!=''?&fenc:&enc).''}\     "Encoding
+set statusline+=%0*\ %{&ff}\                              "FileFormat (dos/unix..)
+set statusline+=%0*\ \ row:%l/%L\ (%03p%%)\               "Rownumber/total (%)
+set statusline+=%0*\ col:%03c\                            "Colnr
+
+set laststatus=2
+set showcmd
 
 set mouse=a
 
 set encoding=UTF-8
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-surround'
-Plugin 'dense-analysis/ale'
-Plugin 'lepture/vim-jinja'
-Plugin 'Yggdroot/indentLine'
-call vundle#end()
+" Markdown
+autocmd FileType markdown let b:indentLine_enabled=0
 
-filetype plugin indent on
-
-map <F2> :NERDTreeToggle<CR>
+" Customize netrw
+map <F2> :Vex<CR>
+let g:netrw_liststyle=3
+let g:netrw_banner=0
+let g:netrw_winsize=25
+let g:netrw_browse_split=4      " open in previous window
+let g:netrw_altv=1              " open vsp to the right
