@@ -56,3 +56,4 @@ default_packages:
   - wget
   - whois
   - xorg
+  - xss-lock

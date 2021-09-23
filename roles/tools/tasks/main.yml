@@ -127,6 +127,15 @@
     - i3
     - tools
 
+- name: Deploy i3lock script
+  template:
+    src: .config/i3/i3lock.sh.j2
+    dest: ~/.config/i3/i3lock.sh
+    mode: 0750
+  tags:
+    - i3
+    - tools
+
 - name: Deploy i3 config file
   template:
     src: .config/i3/config.j2
