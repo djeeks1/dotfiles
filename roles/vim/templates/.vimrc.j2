@@ -11,10 +11,10 @@ set incsearch
 set hlsearch
 
 " tabs and spaces
-set shiftwidth=2 
-set tabstop=2 
-set softtabstop=2 
-set expandtab 
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set expandtab
 
 set number
 
@@ -22,10 +22,10 @@ set number
 set statusline=
 set statusline+=%0*\[%n]                                  "buffernr
 set statusline+=%0*\ %<%F\                                "File+path
-set statusline+=%0*\ %y\                                  "FileType
+set statusline+=%0*\ %m%r%w\                              "Modified? Readonly? Top/bot.
+set statusline+=%0*%=\ %y\                                "FileType
 set statusline+=%0*\ %{''.(&fenc!=''?&fenc:&enc).''}\     "Encoding
-set statusline+=%0*\ %{&ff}\                              "FileFormat (dos/unix..) 
-set statusline+=%0*%=\ %m%r%w\                            "Modified? Readonly? Top/bot.
+set statusline+=%0*\ %{&ff}\                              "FileFormat (dos/unix..)
 set statusline+=%0*\ \ row:%l/%L\ (%03p%%)\               "Rownumber/total (%)
 set statusline+=%0*\ col:%03c\                            "Colnr
 
