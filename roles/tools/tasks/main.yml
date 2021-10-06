@@ -172,6 +172,7 @@
     - ~/.config
     - ~/.config/polybar
   tags:
+    - i3
     - polybar
     - tools
 
@@ -181,6 +182,7 @@
     dest: ~/.config/polybar/config
     mode: 0640
   tags:
+    - i3
     - polybar
     - tools
 
