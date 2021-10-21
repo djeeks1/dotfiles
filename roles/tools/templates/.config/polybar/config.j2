@@ -54,7 +54,7 @@ font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
 
 modules-left = i3
 modules-center = date time
-modules-right = volume xkeyboard network battery powermenu
+modules-right = volume xkeyboard network bluetooth battery powermenu
 
 tray-position = right
 tray-padding = 2
@@ -156,6 +156,12 @@ interface = {{ item }}
 
 label-connected =  %essid%
 label-disconnected =  Wi-Fi disconnected
+
+[module/bluetooth]
+type = custom/script
+exec = ~/.config/polybar/bluetooth-status.sh
+tail = true
+click-left = ~/.config/polybar/bluetooth-status.sh --toggle &
 
 [module/battery]
 type = internal/battery

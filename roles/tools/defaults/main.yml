@@ -4,6 +4,7 @@ default_packages:
   - apt-transport-https
   - autorandr
   - bash-completion
+  - bluez-firmware
   - build-essential
   - ca-certificates
   - ccze
@@ -39,6 +40,7 @@ default_packages:
   - polybar
   - psmisc
   - pulseaudio
+  - pulseaudio-module-bluetooth
   - pwgen
   - python3-pip
   - rofi

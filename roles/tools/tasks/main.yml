@@ -176,6 +176,16 @@
     - polybar
     - tools
 
+- name: Deploy ploybar custom bluetooth script
+  template:
+    src: .config/polybar/bluetooth-status.sh.j2
+    dest: ~/.config/polybar/bluetooth-status.sh
+    mode: 0750
+  tags:
+    - i3
+    - polybar
+    - tools
+
 - name: Deploy polybar config file
   template:
     src: .config/polybar/config.j2
