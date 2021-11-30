@@ -1,6 +1,12 @@
 # {{ ansible_managed }}
 [user]
   name = Maurizio TORTI
+{% if ansible_domain|length > 0 %}
+  email = mtorti@{{ ansible_domain }}
+{% else %}
   email = maurizio.torti@djeeks.com
+{% endif %}
 [pull]
   rebase = preserve
+[core]
+  autocrlf = input
