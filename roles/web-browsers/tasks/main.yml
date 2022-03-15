@@ -1,0 +1,49 @@
+---
+- name: Remove Firefox ESR
+  become: true
+  apt:
+    name: firefox-esr
+    state: absent
+  tags:
+    - firefox
+    - web-browsers
+
+- name: Install Firefox from unstable repo
+  become: true
+  apt:
+    name: firefox
+    state: present
+    update_cache: true
+  tags:
+    - firefox
+    - web-browsers
+
+- name: Add Google repository
+  become: true
+  copy:
+    src: etc/apt/sources.list.d/google-chrome.list
+    dest: /etc/apt/sources.list.d/google-chrome.list
+    mode: 0644
+  tags:
+    - google-chrome
+    - web-browsers
+
+- name: Add Google repository's key
+  become: true
+  apt_key:
+    url: https://dl.google.com/linux/linux_signing_key.pub
+    id: 4CCA1EAF950CEE4AB83976DCA040830F7FAC5991
+    state: present
+  tags:
+    - google-chrome
+    - web-browsers
+
+- name: Install Google Chrome
+  become: true
+  apt:
+    name: google-chrome-stable
+    state: present
+    update_cache: true
+  tags:
+    - google-chrome
+    - web-browsers
