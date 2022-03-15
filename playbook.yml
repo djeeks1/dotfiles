@@ -5,6 +5,6 @@
     - tools
     - i3
     - kitty
-    - bash
+    - starship
     - vim
     - web-browsers
