@@ -3,7 +3,8 @@
   hosts: localhost
   roles:
     - tools
-    - web-browsers
-    - vim
-    - bash
     - i3
+    - kitty
+    - bash
+    - vim
+    - web-browsers
