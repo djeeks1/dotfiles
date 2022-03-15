@@ -1,4 +1,13 @@
 ---
+- name: Install i3
+  become: true
+  apt:
+    name: "{{ i3_packages }}"
+    state: present
+    update_cache: true
+  tags:
+    - i3
+
 - name: Create i3 folders
   file:
     path: "{{ item }}"
@@ -35,6 +44,25 @@
   tags:
     - i3
 
+- name: Install display manager
+  become: true
+  apt:
+    name: lightdm
+    state: present
+    update_cache: true
+  tags:
+    - i3
+
+- name: Install rofi
+  become: true
+  apt:
+    name: rofi
+    state: present
+    update_cache: true
+  tags:
+    - i3
+    - rofi
+
 - name: Create rofi config folder
   file:
     path: "{{ item }}"
@@ -54,6 +82,16 @@
   tags:
     - i3
     - rofi
+
+- name: Install polybar
+  become: true
+  apt:
+    name: polybar
+    state: present
+    update_cache: true
+  tags:
+    - i3
+    - polybar
 
 - name: Create polybar folders
   file:
