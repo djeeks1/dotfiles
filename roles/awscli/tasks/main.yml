@@ -1,0 +1,21 @@
+---
+- name: Get awscli archive
+  get_url:
+    url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
+    dest: /tmp/awscliv2.zip
+  tags:
+    - awscli
+
+- name: Unzip archive
+  unarchive:
+    src: /tmp/awscliv2.zip
+    dest: /tmp
+    remote_src: yes
+  tags:
+    - awscli
+
+- name: Install awscli
+  become: true
+  command: /tmp/aws/install -i /usr/local/aws-cli -b /usr/local/bin
+  tags:
+    - awscli

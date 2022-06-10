@@ -49,6 +49,7 @@ default_packages:
   - traceroute
   - tig
   - tree
+  - unzip
   - vlc
   - wget
   - whois
