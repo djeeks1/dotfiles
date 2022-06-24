@@ -1,0 +1,31 @@
+---
+- name: Install Hashicorp tools
+  block:
+    - name: Get Hashicorp repository key
+      get_url:
+        url: https://apt.releases.hashicorp.com/gpg
+        dest: /etc/apt/keyrings/apt.releases.hashicorp.com
+        mode: 0644
+        force: yes
+      register: hashicorp_key
+
+    - name: Pack GPG file from ASCII key
+      shell: gpg --dearmor /etc/apt/keyrings/apt.releases.hashicorp.com
+      when:
+        - hashicorp_key.changed
+
+    - name: Add Hashicorp repository
+      apt_repository:
+        filename: hashicorp
+        repo: 'deb [signed-by=/etc/apt/keyrings/apt.releases.hashicorp.com.gpg] https://apt.releases.hashicorp.com bullseye main'
+
+    - name: Install Hashicorp tools
+      apt:
+        name: "{{ hashicorp_tools }}"
+        state: present
+        update_cache: yes
+  become: true
+  when:
+    - install_devops_tools
+  tags:
+    - hashicorp-tools
