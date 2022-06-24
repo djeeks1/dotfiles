@@ -116,3 +116,9 @@ fi
 
 # Starship Prompt
 eval "$(starship init bash)"
+
+{% if install_devops_tools %}
+source <(kubectl completion bash)
+alias k=kubectl
+complete -F __start_kubectl k
+{% endif %}

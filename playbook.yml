@@ -9,3 +9,4 @@
     - vim
     - web-browsers
     - awscli
+    - kubectl
