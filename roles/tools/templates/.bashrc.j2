@@ -113,11 +113,13 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+{% if install_starship %}
 
 # Starship Prompt
 eval "$(starship init bash)"
-
+{% endif %}
 {% if install_devops_tools %}
+
 source <(kubectl completion bash)
 alias k=kubectl
 complete -F __start_kubectl k
