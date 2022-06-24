@@ -29,6 +29,24 @@
     - apt
     - tools
 
+- name: Update .bashrc file
+  template:
+    src: .bashrc.j2
+    dest: ~/.bashrc
+    mode: 0640
+  tags:
+    - bashrc
+    - tools
+
+- name: Update PATH with user bin
+  template:
+    src: .xsessionrc.j2
+    dest: ~/.xsessionrc
+    mode: 0640
+  tags:
+    - xsessionrc
+    - tools
+
 - name: Ensure .ssh directory exists
   file:
     path: ~/.ssh
