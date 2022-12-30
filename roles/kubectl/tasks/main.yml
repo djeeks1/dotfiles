@@ -6,18 +6,19 @@
         url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
         dest: /etc/apt/keyrings/apt.kubernetes.io.gpg
         mode: 0644
-        force: yes
-    
+        force: true
+
     - name: Add kubernetes repo
       apt_repository:
         filename: kubernetes
-        repo: 'deb [signed-by=/etc/apt/keyrings/apt.kubernetes.io.gpg] https://apt.kubernetes.io/ kubernetes-xenial main'
-    
+        repo: 'deb [signed-by=/etc/apt/keyrings/apt.kubernetes.io.gpg]
+          https://apt.kubernetes.io/ kubernetes-xenial main'
+
     - name: Install kubectl
       apt:
         name: kubectl
         state: present
-        update_cache: yes
+        update_cache: true
   become: true
   when:
     - install_devops_tools

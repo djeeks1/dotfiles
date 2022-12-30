@@ -24,7 +24,7 @@
     url: https://dl.google.com/linux/linux_signing_key.pub
     dest: /etc/apt/keyrings/dl.google.com.pub
     mode: 0644
-    force: yes
+    force: true
   tags:
     - google-chrome
     - web-browsers
@@ -33,7 +33,8 @@
   become: true
   apt_repository:
     filename: google-chrome
-    repo: 'deb [signed-by=/etc/apt/keyrings/dl.google.com.pub] http://dl.google.com/linux/chrome/deb/ stable main'
+    repo: 'deb [signed-by=/etc/apt/keyrings/dl.google.com.pub]
+      http://dl.google.com/linux/chrome/deb/ stable main'
   tags:
     - google-chrome
     - web-browsers

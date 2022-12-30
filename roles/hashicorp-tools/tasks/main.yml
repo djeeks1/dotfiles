@@ -6,7 +6,7 @@
         url: https://apt.releases.hashicorp.com/gpg
         dest: /etc/apt/keyrings/apt.releases.hashicorp.com
         mode: 0644
-        force: yes
+        force: true
       register: hashicorp_key
 
     - name: Pack GPG file from ASCII key
@@ -17,13 +17,14 @@
     - name: Add Hashicorp repository
       apt_repository:
         filename: hashicorp
-        repo: 'deb [signed-by=/etc/apt/keyrings/apt.releases.hashicorp.com.gpg] https://apt.releases.hashicorp.com bullseye main'
+        repo: 'deb [signed-by=/etc/apt/keyrings/apt.releases.hashicorp.com.gpg]
+          https://apt.releases.hashicorp.com bullseye main'
 
     - name: Install Hashicorp tools
       apt:
         name: "{{ hashicorp_tools }}"
         state: present
-        update_cache: yes
+        update_cache: true
   become: true
   when:
     - install_devops_tools

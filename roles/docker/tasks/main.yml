@@ -6,7 +6,7 @@
         url: https://download.docker.com/linux/debian/gpg
         dest: /etc/apt/keyrings/download.docker.com
         mode: 0644
-        force: yes
+        force: true
       register: docker_key
 
     - name: Pack GPG file from ASCII key
@@ -17,13 +17,14 @@
     - name: Add Docker repository
       apt_repository:
         filename: docker
-        repo: 'deb [signed-by=/etc/apt/keyrings/download.docker.com.gpg] https://download.docker.com/linux/debian bullseye stable'
+        repo: 'deb [signed-by=/etc/apt/keyrings/download.docker.com.gpg]
+          https://download.docker.com/linux/debian bullseye stable'
 
     - name: Install Docker
       apt:
         name: "{{ docker_packages }}"
         state: present
-        update_cache: yes
+        update_cache: true
   become: true
   when:
     - install_devops_tools

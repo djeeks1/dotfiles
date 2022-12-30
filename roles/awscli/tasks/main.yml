@@ -10,7 +10,7 @@
       unarchive:
         src: /tmp/awscliv2.zip
         dest: /tmp
-        remote_src: yes
+        remote_src: true
 
     - name: Install awscli
       become: true
