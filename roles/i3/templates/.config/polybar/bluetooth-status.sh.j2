@@ -5,7 +5,7 @@ bluetooth_print() {
   if bluetoothctl show | grep -q "Powered: yes"; then
     printf ''
 
-    devices_paired=$(bluetoothctl paired-devices | grep Device | cut -d ' ' -f 2)
+    devices_paired=$(bluetoothctl devices Paired | grep Device | cut -d ' ' -f 2)
     counter=0
     device_alias=""
 
