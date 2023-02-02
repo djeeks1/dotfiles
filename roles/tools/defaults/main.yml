@@ -38,6 +38,7 @@ default_packages:
   - pulseaudio
   - pulseaudio-module-bluetooth
   - pwgen
+  - python3-packaging
   - python3-pip
   - screen
   - sslscan
