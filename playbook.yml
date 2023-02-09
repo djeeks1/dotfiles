@@ -10,5 +10,5 @@
     - web-browsers
     - hashicorp-tools
     - docker
-    - kubectl
+    - k8s_tools
     - awscli

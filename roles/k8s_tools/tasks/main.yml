@@ -1,0 +1,67 @@
+---
+- name: Install kubernetes tools
+  block:
+    - name: Get kubernetes repo key
+      get_url:
+        url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
+        dest: /etc/apt/keyrings/apt.kubernetes.io.gpg
+        mode: 0644
+        force: true
+
+    - name: Add kubernetes repo
+      apt_repository:
+        filename: kubernetes
+        repo: 'deb [signed-by=/etc/apt/keyrings/apt.kubernetes.io.gpg]
+          https://apt.kubernetes.io/ kubernetes-xenial main'
+
+    - name: Install kubectl
+      apt:
+        name: kubectl
+        state: present
+        update_cache: true
+
+    - name: Get Helm repo key
+      get_url:
+        url: https://baltocdn.com/helm/signing.asc
+        dest: /etc/apt/keyrings/helm
+        mode: 0644
+        force: true
+      register: helm_key
+
+    - name: Pack GPG file from ASCII key
+      shell: gpg --dearmor /etc/apt/keyrings/helm
+      when:
+        - helm_key.changed
+
+    - name: Add Helm repository
+      apt_repository:
+        filename: helm
+        repo: 'deb [signed-by=/etc/apt/keyrings/helm.gpg]
+          https://baltocdn.com/helm/stable/debian/ all main'
+
+    - name: install Helm
+      apt:
+        name: helm
+        state: present
+        update_cache: true
+
+    - name: Get k9s archive
+      unarchive:
+        src: "{{ k9s.url }}"
+        dest: /tmp/
+        remote_src: true
+        owner: root
+
+    - name: Move k9s to PATH
+      copy:
+        src: /tmp/k9s
+        dest: /usr/local/bin/k9s
+        owner: root
+        group: root
+        mode: 0755
+
+  become: true
+  when:
+    - install_devops_tools
+  tags:
+    - k8s_tools
