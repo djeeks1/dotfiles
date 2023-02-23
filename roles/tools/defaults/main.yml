@@ -10,6 +10,7 @@ default_packages:
   - ccze
   - cups
   - curl
+  - direnv
   - dnsutils
   - evince
   - feh
