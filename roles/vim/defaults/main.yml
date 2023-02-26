@@ -1,15 +1,13 @@
 ---
 linter_packages:
+  - ansible-lint
   - flake8
   - libb-lint-perl
   - nslint
   - puppet-lint
+  - pylint
   - shellcheck
   - weblint-perl
-
-linter_pip_packages:
-  - ansible-lint
-  - pylint
   - yamllint
 
 vim_plugins:
