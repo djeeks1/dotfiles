@@ -1,20 +1,43 @@
 ---
 - name: Install awscli
   block:
+    - name: Check installed version
+      shell: "/usr/local/bin/aws --version > /tmp/aws_version && \
+              awk '{print $1}' /tmp/aws_version"
+      changed_when: false
+      ignore_errors: true
+      register: awscli_installed_version
+
     - name: Get awscli archive
       get_url:
         url: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
         dest: /tmp/awscliv2.zip
+      changed_when: false
 
     - name: Unzip archive
       unarchive:
         src: /tmp/awscliv2.zip
         dest: /tmp
         remote_src: true
+      changed_when: false
+
+    - name: Check latest version
+      shell: /tmp/aws/dist/aws --version | awk '{print $1}'
+      register: awscli_latest_version
+      changed_when: false
+      when: awscli_installed_version.rc == 0
 
     - name: Install awscli
       become: true
       command: /tmp/aws/install -i /usr/local/aws-cli -b /usr/local/bin
+      when: awscli_installed_version.rc != 0
+
+    - name: Update awscli
+      become: true
+      command: /tmp/aws/install -u -i /usr/local/aws-cli -b /usr/local/bin
+      when:
+        - awscli_installed_version.rc == 0
+        - awscli_latest_version.stdout != awscli_installed_version.stdout
   when:
     - install_devops_tools
   tags:
