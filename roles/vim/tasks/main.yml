@@ -25,6 +25,21 @@
   tags:
     - vim
 
+- name: Create yamllint conf dir
+  file:
+    path: ~/.config/yamllint
+    state: directory
+  tags:
+    - vim
+
+- name: Configure yamllint
+  template:
+    src: .config/yamllint/config.j2
+    dest: ~/.config/yamllint/config
+    mode: 0640
+  tags:
+    - vim
+
 - name: Configure Vim
   template:
     src: .vimrc.j2
