@@ -1,5 +1,5 @@
 # {{ ansible_managed }}
-# 
+ 
 # General
 copy_on_select yes
 detect_urls yes
@@ -13,4 +13,5 @@ term xterm-256color
 # Shortcuts
 map ctrl+shift+o launch --location=hsplit
 map ctrl+shift+e launch --location=vsplit
+map ctrl+backspace send_text all \x17
 enabled_layouts splits:split_axis=horizontal
