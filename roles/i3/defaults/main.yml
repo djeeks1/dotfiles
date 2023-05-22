@@ -3,3 +3,4 @@ i3_packages:
   - i3
   - i3lock
   - xss-lock
+  - compton
