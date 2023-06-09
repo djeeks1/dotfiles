@@ -1,0 +1,36 @@
+---
+- name: Install polybar
+  become: true
+  apt:
+    name: polybar
+    state: present
+    update_cache: true
+  tags:
+    - polybar
+
+- name: Create polybar folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0750
+  loop:
+    - ~/.config
+    - ~/.config/polybar
+  tags:
+    - polybar
+
+- name: Deploy ploybar custom bluetooth script
+  template:
+    src: .config/polybar/bluetooth-status.sh.j2
+    dest: ~/.config/polybar/bluetooth-status.sh
+    mode: 0750
+  tags:
+    - polybar
+
+- name: Deploy polybar config file
+  template:
+    src: .config/polybar/config.j2
+    dest: ~/.config/polybar/config
+    mode: 0640
+  tags:
+    - polybar

@@ -1,0 +1,60 @@
+---
+- name: Install Display Manager
+  import_tasks: display-manager.yml
+  tags:
+    - i3
+    - display_manager
+
+- name: Install i3
+  become: true
+  apt:
+    name: "{{ i3_packages }}"
+    state: present
+    update_cache: true
+  tags:
+    - i3
+
+- name: Create i3 folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0750
+  loop:
+    - ~/.config
+    - ~/.config/i3
+    - ~/Downloads
+  tags:
+    - i3
+
+- name: Deploy i3lock script
+  template:
+    src: .config/i3/i3lock.sh.j2
+    dest: ~/.config/i3/i3lock.sh
+    mode: 0750
+  tags:
+    - i3
+
+- name: Deploy i3 config file
+  template:
+    src: .config/i3/config.j2
+    dest: ~/.config/i3/config
+    mode: 0640
+  tags:
+    - i3
+
+- name: Deploy Wallpaper
+  import_tasks: wallpaper.yml
+  tags:
+    - i3
+
+- name: Install Rofi
+  import_tasks: rofi.yml
+  tags:
+    - i3
+    - rofi
+
+- name: Install Polybar
+  import_tasks: polybar.yml
+  tags:
+    - i3
+    - polybar

@@ -1,0 +1,6 @@
+---
+- name: Copy wallpaper
+  copy:
+    src: Downloads/wallpaper.png
+    dest: ~/Downloads/wallpaper.png
+    mode: 0644

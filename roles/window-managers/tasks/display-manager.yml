@@ -1,0 +1,7 @@
+---
+- name: Install display manager
+  become: true
+  apt:
+    name: lightdm
+    state: present
+    update_cache: true
