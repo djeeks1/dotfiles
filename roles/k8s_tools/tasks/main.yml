@@ -4,9 +4,15 @@
     - name: Get kubernetes repo key
       get_url:
         url: https://packages.cloud.google.com/apt/doc/apt-key.gpg
-        dest: /etc/apt/keyrings/apt.kubernetes.io.gpg
+        dest: /etc/apt/keyrings/apt.kubernetes.io
         mode: 0644
         force: true
+      register: k8s_key
+
+    - name: Pack GPG file from ASCII key
+      shell: gpg --dearmor /etc/apt/keyrings/apt.kubernetes.io
+      when:
+        - k8s_key.changed
 
     - name: Add kubernetes repo
       apt_repository:
