@@ -1,6 +1,6 @@
 ---
 - name: Install Display Manager
-  import_tasks: display-manager.yml
+  import_tasks: display_manager.yml
   tags:
     - awesomewm
     - i3

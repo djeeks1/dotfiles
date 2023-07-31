@@ -3,12 +3,12 @@
   hosts: localhost
   roles:
     - tools
-    - window-managers
+    - window_managers
     - kitty
     - starship
     - vim
-    - web-browsers
-    - hashicorp-tools
+    - web_browsers
+    - hashicorp_tools
     - docker
     - k8s_tools
     - awscli
