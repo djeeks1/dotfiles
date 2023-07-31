@@ -1,6 +1,20 @@
 ---
+install_awesomewm: true
+install_i3: true
+
+awesomewm_widget_url: "https://github.com/streetturtle/awesome-wm-widgets.git"
+awesomewm_arc_icon_url: "https://github.com/horst3180/arc-icon-theme"
+
+awesomewm_packages:
+  - awesome
+  - awesome-extra
+  - compton
+  - i3lock
+  - light
+  - xss-lock
+
 i3_packages:
+  - compton
   - i3
   - i3lock
   - xss-lock
-  - compton

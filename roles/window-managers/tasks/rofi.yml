@@ -6,6 +6,8 @@
     state: present
     update_cache: true
   tags:
+    - awesomewm
+    - i3
     - rofi
 
 - name: Create rofi config folder
@@ -16,6 +18,8 @@
   loop:
     - ~/.config/rofi
   tags:
+    - awesomewm
+    - i3
     - rofi
 
 - name: Deploy rofi config file
@@ -24,4 +28,6 @@
     dest: ~/.config/rofi/config.rasi
     mode: 0640
   tags:
+    - awesomewm
+    - i3
     - rofi

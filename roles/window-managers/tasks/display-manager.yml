@@ -5,3 +5,7 @@
     name: lightdm
     state: present
     update_cache: true
+  tags:
+    - awesomewm
+    - i3
+    - display_manager

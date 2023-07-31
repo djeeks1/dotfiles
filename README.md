@@ -3,7 +3,7 @@
 ## Description
 
 This repository uses ansible to deploy the workstation's configuration :
-* it sets the desktop environment (currently [i3](https://i3wm.org/))
+* it sets the desktop environments (currently [AwesomeWM](https://awesomewm.org/) or [i3](https://i3wm.org/))
 * it customizes the termninal and bash prompt (with [starship](https://starship.rs/) and [kitty](https://sw.kovidgoyal.net/kitty/))
 * it installs [vim](https://vimhelp.org/) with its configuration and plugins
 * it installs some other usefull packages

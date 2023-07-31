@@ -1,0 +1,37 @@
+---
+- name: Install i3
+  become: true
+  apt:
+    name: "{{ i3_packages }}"
+    state: present
+    update_cache: true
+  tags:
+    - i3
+
+- name: Create i3 folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0750
+  loop:
+    - ~/.config
+    - ~/.config/i3
+    - ~/Downloads
+  tags:
+    - i3
+
+- name: Deploy i3lock script
+  template:
+    src: .config/i3/i3lock.sh.j2
+    dest: ~/.config/i3/i3lock.sh
+    mode: 0750
+  tags:
+    - i3
+
+- name: Deploy i3 config file
+  template:
+    src: .config/i3/config.j2
+    dest: ~/.config/i3/config
+    mode: 0640
+  tags:
+    - i3

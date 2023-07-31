@@ -1,0 +1,69 @@
+---
+- name: Install AwesomeWM
+  become: true
+  apt:
+    name: "{{ awesomewm_packages }}"
+    state: present
+    update_cache: true
+  tags:
+    - awesomewm
+
+- name: Create AwesomeWM folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0750
+  loop:
+    - ~/.config
+    - ~/.config/i3
+    - ~/.config/awesome
+    - ~/.config/awesome/theme
+    - ~/.config/awesome/awful
+    - ~/.config/awesome/awful/hotkeys_popup
+    - ~/.config/awesome/awful/hotkeys_popup/keys
+    - ~/Downloads
+  tags:
+    - awesomewm
+
+- name: Clone Widget repository
+  git:
+    repo: "{{ awesomewm_widget_url }}"
+    dest: "~/.config/awesome/awesome-wm-widgets"
+  tags:
+    - awesomewm
+
+- name: Clone Arc Icon repository
+  git:
+    repo: "{{ awesomewm_arc_icon_url }}"
+    dest: "~/git/arc-icon-theme"
+    depth: 1
+  tags:
+    - awesomewm
+
+- name: Install Arc Icon Theme
+  become: true
+  shell: 
+    chdir: "{{ ansible_env.HOME }}/git/arc-icon-theme"
+    cmd: "./autogen.sh --prefix=/usr && make install"
+  tags:
+    - awesomewm
+
+- name: Deploy i3lock script
+  template:
+    src: .config/i3/i3lock.sh.j2
+    dest: ~/.config/i3/i3lock.sh
+    mode: 0750
+  tags:
+    - awesomewm
+
+- name: Deploy AwesomeWM config file
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: 0640
+  loop:
+    - { src: .config/awesome/rc.lua.j2, dest: ~/.config/awesome/rc.lua }
+    - { src: .config/awesome/theme/theme.lua.j2, dest: ~/.config/awesome/theme/theme.lua }
+    - { src: .config/awesome/awful/hotkeys_popup/keys/init.lua.j2, dest: ~/.config/awesome/awful/hotkeys_popup/keys/init.lua }
+  tags:
+    - awesomewm
