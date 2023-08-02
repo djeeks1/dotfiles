@@ -11,10 +11,12 @@ awesomewm_packages:
   - compton
   - i3lock
   - light
+  - nitrogen
   - xss-lock
 
 i3_packages:
   - compton
   - i3
   - i3lock
+  - nitrogen
   - xss-lock

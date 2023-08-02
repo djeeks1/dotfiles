@@ -13,7 +13,6 @@ default_packages:
   - direnv
   - dnsutils
   - evince
-  - feh
   - filezilla
   - firmware-linux
   - firmware-linux-free
@@ -41,6 +40,7 @@ default_packages:
   - pwgen
   - python3-packaging
   - python3-pip
+  - ristretto
   - screen
   - sslscan
   - strace
