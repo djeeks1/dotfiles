@@ -26,3 +26,8 @@
     mode: 0640
   tags:
     - kitty
+
+- name: Set default theme
+  shell: kitty +kitten themes "{{ kitty_default_theme }}"
+  tags:
+    - kitty
