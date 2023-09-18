@@ -94,6 +94,11 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+# Show scratchpads
+bindsym $mod+b [class="fm"] scratchpad show; move position center
+bindsym $mod+n [class="ttrm"] scratchpad show; move position center
+bindsym $mod+m [class="mus"] scratchpad show; move position center
+
 gaps inner 6px
 
 # Define names for default workspaces for which we configure key bindings later on.
@@ -186,6 +191,11 @@ exec_always --no-startup-id nitrogen --restore
 exec_always --no-startup-id "killall polybar; polybar default"
 exec_always --no-startup-id "nextcloud"
 exec_always --no-startup-id "xset s 600; xss-lock ~/.config/i3/i3lock.sh"
+exec_always --no-startup-id pgrep -f '^kitty --class mus,mus' || kitty --class mus,mus -e ncmpcpp
+exec_always --no-startup-id pgrep -f '^kitty --class fm,fm' || kitty --class fm,fm -e ranger
+exec_always --no-startup-id pgrep -f '^kitty --class ttrm,ttrm' || kitty --class ttrm,ttrm
+
+for_window [class="ttrm|mus|fm"] floating enable, resize set 1400 800, move scratchpad
 
 # class                 border  bground text    indicator child_border
 client.focused          #660000 #440000 #FDF6E3 #F32323   #440000
