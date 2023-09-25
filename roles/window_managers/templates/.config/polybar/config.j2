@@ -51,8 +51,8 @@ font-1 = DejaVu Sans Mono;fixed:size=10;1
 font-2 = unifont:fontformat=truetype:size=8:antialias=false;0
 
 modules-left = i3
-modules-center = date time
-modules-right = volume xkeyboard network bluetooth battery powermenu
+modules-center = mpd
+modules-right = volume xkeyboard network bluetooth date time battery powermenu
 
 tray-position = right
 tray-padding = 2
@@ -102,6 +102,19 @@ ws-icon-6 = 7;
 ws-icon-7 = 8;
 ws-icon-8 = 9;
 ws-icon-9 = 10;
+
+[module/mpd]
+type = internal/mpd
+format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+
+icon-prev = 
+icon-stop = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+label-song-maxlen = 50
+label-song-ellipsis = true
 
 [module/date]
 type = internal/date

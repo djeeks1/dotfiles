@@ -1,4 +1,9 @@
 ---
+- name: Install mpd
+  import_tasks: mpd.yml
+  tags:
+    - mpd
+
 - name: Install Display Manager
   import_tasks: display_manager.yml
   tags:

@@ -5,6 +5,10 @@ install_i3: true
 awesomewm_widget_url: "https://github.com/streetturtle/awesome-wm-widgets.git"
 awesomewm_arc_icon_url: "https://github.com/horst3180/arc-icon-theme"
 
+mpd_packages:
+  - mpd
+  - ncmpcpp
+
 awesomewm_packages:
   - awesome
   - awesome-extra
