@@ -1,0 +1,78 @@
+---
+- name: Install qtile dependencies
+  become: true
+  apt:
+    name: "{{ qtile_packages }}"
+    state: present
+    update_cache: true
+  tags:
+    - qtile
+
+- name: Create qtile folders
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  loop:
+    - ~/.config
+    - ~/.config/qtile
+    - ~/Downloads
+    - ~/git
+    - ~/virtualenvs
+    - /usr/share/xsessions
+  tags:
+    - qtile
+
+- name: Clone qtile repository
+  git:
+    repo: 'https://github.com/qtile/qtile.git'
+    dest: ~/git/qtile
+  tags:
+    - qtile
+
+- name: Install qtile
+  pip:
+    chdir: ~/git/qtile
+    virtualenv: ~/virtualenvs/default
+    virtualenv_command: 'python3 -m venv'
+    name: .
+  tags:
+    - qtile
+
+- name: Install qtile widget dependencies
+  pip:
+    virtualenv: ~/virtualenvs/default
+    name: "{{ item }}"
+  loop:
+    - iwlib
+    - pulsectl_asyncio
+    - python-mpd2
+  tags:
+    - qtile
+
+- name: Create qtile desktop file
+  become: true
+  template:
+    src: usr/share/xsessions/qtile.desktop.j2
+    dest: /usr/share/xsessions/qtile.desktop
+    mode: 0644
+  tags:
+    - qtile
+
+- name: Deploy qtile configuration file
+  template:
+    src: .config/qtile/config.py.j2
+    dest: ~/.config/qtile/config.py
+    mode: 0644
+  tags:
+    - qtile
+    - qtileconfig
+
+- name: Deploy qtile autostart script
+  template:
+    src: .config/qtile/autostart.sh.j2
+    dest: ~/.config/qtile/autostart.sh
+    mode: 0755
+  tags:
+    - qtile
+    - qtileconfig

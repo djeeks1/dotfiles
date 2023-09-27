@@ -1,6 +1,7 @@
 ---
-install_awesomewm: true
+install_awesomewm: false
 install_i3: true
+install_qtile: true
 
 awesomewm_widget_url: "https://github.com/streetturtle/awesome-wm-widgets.git"
 awesomewm_arc_icon_url: "https://github.com/horst3180/arc-icon-theme"
@@ -23,4 +24,19 @@ i3_packages:
   - i3
   - i3lock
   - nitrogen
+  - xss-lock
+
+qtile_packages:
+  - compton
+  - i3lock
+  - libiw-dev
+  - libpangocairo-1.0-0
+  - libxkbcommon-dev
+  - nitrogen
+  - python3-cairocffi
+  - python3-pip
+  - python3-venv
+  - python3-xcffib
+  - xinit
+  - xserver-xorg
   - xss-lock

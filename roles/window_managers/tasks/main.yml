@@ -9,6 +9,7 @@
   tags:
     - awesomewm
     - i3
+    - qtile
     - display_manager
 
 - name: Install and configure AwesomeWM
@@ -25,11 +26,19 @@
   tags:
     - i3
 
+- name: Install and configure qtile
+  import_tasks: qtile.yml
+  when:
+    - install_qtile
+  tags:
+    - qtile
+
 - name: Deploy Wallpaper
   import_tasks: wallpaper.yml
   tags:
     - awesomewm
     - i3
+    - qtile
 
 - name: Install Rofi
   import_tasks: rofi.yml
@@ -38,6 +47,7 @@
   tags:
     - awesomewm
     - i3
+    - qtile
     - rofi
 
 - name: Install Polybar
