@@ -202,12 +202,28 @@ def init_widgets_list():
             max_chars=60
         ),
         widget.Spacer(length=bar.STRETCH),
-        widget.PulseVolume(emoji=False, fmt=" {}"),
+        widget.PulseVolume(
+            emoji=False,
+            fmt=" {}"
+        ),
 {% for item in ansible_interfaces if 'wl' in item %}
-        widget.Wlan(interface='{{ item }}', format=" {essid}", disconnected_message=" Disconnected"),
+        widget.Wlan(
+            interface='{{ item }}',
+            format=" {essid}",
+            disconnected_message=" Disconnected"
+        ),
 {% endfor %}
-        widget.Clock(format="  %a %d %b %Y  %H:%M"),
-        widget.Battery(show_short_text=False, discharge_char='', charge_char='', full_char='', empty_char='', format=" {char} {percent:2.0%}"),
+        widget.Clock(
+            format="  %a %d %b %Y  %H:%M"
+        ),
+        widget.Battery(
+            show_short_text=False,
+            discharge_char=' ',
+            charge_char=' ',
+            full_char=' ',
+            empty_char=' ',
+            format="{char}{percent:2.0%}"
+        ),
         widget.Systray(),
         widget.CurrentLayoutIcon(scale=0.7)
     ]
