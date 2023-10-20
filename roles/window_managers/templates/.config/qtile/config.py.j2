@@ -107,13 +107,26 @@ groups = []
 group_names = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"]
 group_labels = ["", "", "", "", "", "", "", "", "", ""]
 group_layouts = ["columns", "columns", "columns", "columns", "columns", "columns", "columns", "columns", "columns", "columns"]
+group_matches = [
+    [Match(wm_class=["kitty"])],
+    [Match(wm_class=["Firefox"])],
+    [Match(wm_class=["Google-chrome"])],
+    None,
+    [Match(wm_class=["Thunar"])],
+    [Match(wm_class=["Vmware", "VirtualBox Manager"])],
+    None,
+    [Match(wm_class=["KeePassXC"])],
+    None,
+    None
+]
 
 for i in range(len(group_names)):
     groups.append(
         Group(
             name=group_names[i],
             layout=group_layouts[i].lower(),
-            label=group_labels[i]
+            label=group_labels[i],
+            matches=group_matches[i]
         ))
 
 for i in groups:
