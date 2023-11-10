@@ -66,6 +66,20 @@
         group: root
         mode: 0755
 
+    - name: Ensure k9s confdir exists
+      become: false
+      file:
+        path: ~/.config/k9s
+        state: directory
+        mode: 0755
+
+    - name: Configure k9s theme
+      become: false
+      get_url:
+        url: "{{ k9s.theme }}"
+        dest: ~/.config/k9s/skin.yml
+        mode: 0644
+
   become: true
   when:
     - install_devops_tools

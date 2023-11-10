@@ -29,5 +29,6 @@
 
 - name: Set default theme
   shell: kitty +kitten themes "{{ kitty_default_theme }}"
+  changed_when: false
   tags:
     - kitty
