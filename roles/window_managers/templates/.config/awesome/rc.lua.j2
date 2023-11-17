@@ -206,7 +206,7 @@ awful.screen.connect_for_each_screen(function(s)
     -- set_wallpaper(s)
 
     -- Each screen has its own tag table.
-    local names = { " ", " ", " ", " ", " ", " ", " ", " ", " " }
+    local names = { " ", " ", " ", " ", " ", " ", " ", " ", " " }
     awful.tag(names, s, awful.layout.layouts[2])
 
     -- Create a promptbox for each screen
@@ -577,6 +577,8 @@ awful.rules.rules = {
       properties = { tag = " " } },
     { rule = { class = "Firefox" },
       properties = { tag = " " } },
+    { rule = { class = "thunderbird-default" },
+      properties = { tag = " " } },
     { rule = { class = "Google-chrome" },
       properties = { tag = " " } },
     { rule = { class = "Thunar" },

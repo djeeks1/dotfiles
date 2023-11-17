@@ -48,6 +48,7 @@ default_packages:
   - tcpdump
   - telnet
   - thunar
+  - thunderbird
   - traceroute
   - tig
   - tree
