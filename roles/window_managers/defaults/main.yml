@@ -6,6 +6,8 @@ install_qtile: true
 awesomewm_widget_url: "https://github.com/streetturtle/awesome-wm-widgets.git"
 awesomewm_arc_icon_url: "https://github.com/horst3180/arc-icon-theme"
 
+wallpapers_repo_url: "git@github.com:djeeks1/wallpapers.git"
+
 mpd_packages:
   - mpd
   - ncmpcpp

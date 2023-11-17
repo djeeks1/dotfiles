@@ -1,0 +1,10 @@
+---
+- name: Clone wallpapers repository
+  git:
+    repo: "{{ wallpapers_repo_url }}"
+    dest: ~/Pictures/wallpapers
+  tags:
+    - awesomewm
+    - i3
+    - qtile
+    - wallpapers

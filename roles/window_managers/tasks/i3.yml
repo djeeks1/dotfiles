@@ -16,7 +16,7 @@
   loop:
     - ~/.config
     - ~/.config/i3
-    - ~/Downloads
+    - ~/Pictures
   tags:
     - i3
 

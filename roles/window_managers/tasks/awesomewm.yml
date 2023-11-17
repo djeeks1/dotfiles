@@ -21,7 +21,7 @@
     - ~/.config/awesome/awful
     - ~/.config/awesome/awful/hotkeys_popup
     - ~/.config/awesome/awful/hotkeys_popup/keys
-    - ~/Downloads
+    - ~/Pictures
   tags:
     - awesomewm
 

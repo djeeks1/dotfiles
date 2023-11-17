@@ -33,8 +33,8 @@
   tags:
     - qtile
 
-- name: Deploy Wallpaper
-  import_tasks: wallpaper.yml
+- name: Deploy Wallpapers
+  import_tasks: wallpapers.yml
   tags:
     - awesomewm
     - i3

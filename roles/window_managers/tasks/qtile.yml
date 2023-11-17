@@ -16,7 +16,7 @@
   loop:
     - ~/.config
     - ~/.config/qtile
-    - ~/Downloads
+    - ~/Pictures
     - ~/git
     - ~/virtualenvs
     - /usr/share/xsessions

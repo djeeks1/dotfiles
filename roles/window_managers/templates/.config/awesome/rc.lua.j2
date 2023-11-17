@@ -276,7 +276,7 @@ awful.screen.connect_for_each_screen(function(s)
             },
             logout_menu_widget{
                 font = "DejaVu Sans Mono 10",
-                onlock = function() awful.spawn.with_shell('i3lock -t -i ~/Downloads/wallpaper.png') end,
+                onlock = function() awful.spawn.with_shell('i3lock -t -i ~/Pictures/wallpapers/0001.png') end,
                 onreboot = function() awful.spawn.with_shell('sudo reboot') end,
                 onpoweroff = function() awful.spawn.with_shell('sudo shutdown now') end,
             },
@@ -319,7 +319,7 @@ globalkeys = gears.table.join(
     ),
     awful.key({ modkey,           }, "w", function () mymainmenu:show() end,
               {description = "show main menu", group = "awesome"}),
-    awful.key({ modkey, "Control" }, "l", function () awful.spawn.with_shell("i3lock -t -i ~/Downloads/wallpaper.png") end,
+    awful.key({ modkey, "Control" }, "l", function () awful.spawn.with_shell("i3lock -t -i ~/Pictures/wallpapers/0001.png") end,
               {description = "lock the screen", group = "awesome"}),
 
     -- Layout manipulation
