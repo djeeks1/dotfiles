@@ -1,65 +1,189 @@
-// {{ansible_managed }}
+// {{ ansible_managed }}
+/**
+ *
+ * Author : Aditya Shakya (adi1090x)
+ * Github : @adi1090x
+ *
+ * Rofi Theme File
+ * Rofi Version: 1.7.3
+ **/
 
+/*****----- Configuration -----*****/
 configuration {
-  combi-modi: "drun";
-  font: "DejaVu Sans Mono 12";
-  show-icons: true;
-  scroll-method: 1;
+    modi:                "window,drun";
+    show-icons:          true;
+    display-drun:        "";
+    display-window:      "";
+    drun-display-format: "{name}";
 }
 
+/*****----- Global Properties -----*****/
 
+* {
+    font: "DejaVu Sans Mono 10";
+
+    background:     #1E2127FF;
+    background-alt: #282B31FF;
+    foreground:     #FFFFFFFF;
+    //selected:       #61AFEFFF;
+    selected:       #E53935F2;
+    active:         #98C379FF;
+    urgent:         #E06C75FF;
+}
+
+/*****----- Main Window -----*****/
 window {
-  background-color: #353535; 
-	text-color:	#fdf6e3;
+    transparency:                "real";
+    location:                    center;
+    anchor:                      center;
+    fullscreen:                  false;
+    width:                       700px;
+    x-offset:                    0px;
+    y-offset:                    0px;
+
+    enabled:                     true;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px solid;
+    border-radius:               12px;
+    border-color:                @selected;
+    background-color:            @background;
+    cursor:                      "default";
 }
 
+
+/*****----- Main Box -----*****/
+mainbox {
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     20px;
+    border:                      0px solid;
+    border-radius:               0px 0px 0px 0px;
+    border-color:                @selected;
+    background-color:            transparent;
+    children:                    [ "inputbar", "listview" ];
+}
+
+/*****----- Inputbar -----*****/
+inputbar {
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     15px;
+    border:                      0px solid;
+    border-radius:               12px;
+    border-color:                @selected;
+    background-color:            @background-alt;
+    text-color:                  @foreground;
+    children:                    [ "prompt", "entry" ];
+}
 
 prompt {
-	text-color:	#fdf6e3;
+    enabled:                     true;
+    background-color:            inherit;
+    text-color:                  inherit;
 }
 textbox-prompt-colon {
-	text-color:	#fdf6e3;
+    enabled:                     true;
+    expand:                      false;
+    str:                         "::";
+    background-color:            inherit;
+    text-color:                  inherit;
 }
-
-
 entry {
-	text-color:	#fdf6e3;
+    enabled:                     true;
+    background-color:            inherit;
+    text-color:                  inherit;
+    cursor:                      text;
+    placeholder:                 "Search...";
+    placeholder-color:           inherit;
+}
+
+/*****----- Listview -----*****/
+listview {
+    enabled:                     true;
+    columns:                     2;
+    lines:                       8;
+    cycle:                       true;
+    dynamic:                     true;
+    scrollbar:                   false;
+    layout:                      vertical;
+    reverse:                     false;
+    fixed-height:                true;
+    fixed-columns:               true;
+
+    spacing:                     5px;
+    margin:                      0px;
+    padding:                     0px;
+    border:                      0px solid;
+    border-radius:               0px;
+    border-color:                @selected;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    cursor:                      "default";
+}
+scrollbar {
+    handle-width:                5px ;
+    handle-color:                @selected;
+    border-radius:               0px;
+    background-color:            @background-alt;
 }
 
 
+/*****----- Elements -----*****/
+element {
+    enabled:                     true;
+    spacing:                     10px;
+    margin:                      0px;
+    padding:                     5px;
+    border:                      0px solid;
+    border-radius:               12px;
+    border-color:                @selected;
+    background-color:            transparent;
+    text-color:                  @foreground;
+    cursor:                      pointer;
+}
 element normal.normal {
-  background-color: #353535; 
-	text-color:	#fdf6e3;
+    background-color:            @background;
+    text-color:                  @foreground;
 }
 element alternate.normal {
-  background-color: #393939; 
-	text-color:	#fdf6e3;
+    background-color:            @background;
+    text-color:                  @foreground;
 }
 element selected.normal {
-  background-color: #f32323; 
-	text-color:	#fdf6e3;
-}
-
-
-element-text {
-  background-color: inherit; 
-	text-color:	inherit;
+    background-color:            @selected;
+    text-color:                  @background;
 }
 element-icon {
-  background-color: inherit; 
-	text-color:	inherit;
+    background-color:            transparent;
+    text-color:                  inherit;
+    size:                        32px;
+    cursor:                      inherit;
+}
+element-text {
+    background-color:            transparent;
+    text-color:                  inherit;
+    highlight:                   inherit;
+    cursor:                      inherit;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
 }
 
-
-listview {
-  padding: 2px 0px 0px ;
-  scrollbar: true;
-  border-color: #f32323;
-  spacing: 2px ;
-  border: 2px 0px 0px ;
+/*****----- Message -----*****/
+error-message {
+    padding:                     15px;
+    border:                      2px solid;
+    border-radius:               12px;
+    border-color:                @selected;
+    background-color:            @background;
+    text-color:                  @foreground;
 }
-
-
-scrollbar {
-  handle-color: #f32323;
+textbox {
+    background-color:            @background;
+    text-color:                  @foreground;
+    vertical-align:              0.5;
+    horizontal-align:            0.0;
+    highlight:                   none;
 }
