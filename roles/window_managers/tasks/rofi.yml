@@ -24,9 +24,13 @@
 
 - name: Deploy rofi config file
   template:
-    src: .config/rofi/config.rasi.j2
-    dest: ~/.config/rofi/config.rasi
-    mode: 0640
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: "{{ item.mode }}"
+  loop:
+    - { src: ".config/rofi/config.rasi.j2", dest: "~/.config/rofi/config.rasi", mode: "0644" }
+    - { src: ".config/rofi/powermenu.sh.j2", dest: "~/.config/rofi/powermenu.sh", mode: "0755" }
+    - { src: ".config/rofi/powermenu.rasi.j2", dest: "~/.config/rofi/powermenu.rasi", mode: "0644" }
   tags:
     - awesomewm
     - i3

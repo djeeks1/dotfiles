@@ -43,7 +43,7 @@
 - name: Install Rofi
   import_tasks: rofi.yml
   when:
-    - install_i3 or install_awesomewm
+    - install_i3 or install_awesomewm or install_qtile
   tags:
     - awesomewm
     - i3
