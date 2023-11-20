@@ -1,3 +1,4 @@
 #!/bin/bash
 # {{ ansible_managed }}
-i3lock -t -i ~/Pictures/wallpapers/0001.png
+
+i3lock --raw 1920x1080:rgb --image <(convert ~/Pictures/wallpapers/0001.jpg RGB:-) -t -f

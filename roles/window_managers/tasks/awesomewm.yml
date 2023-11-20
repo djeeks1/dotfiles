@@ -12,7 +12,7 @@
   file:
     path: "{{ item }}"
     state: directory
-    mode: 0750
+    mode: 0755
   loop:
     - ~/.config
     - ~/.config/i3
@@ -22,6 +22,7 @@
     - ~/.config/awesome/awful/hotkeys_popup
     - ~/.config/awesome/awful/hotkeys_popup/keys
     - ~/Pictures
+    - ~/git
   tags:
     - awesomewm
 
@@ -52,7 +53,7 @@
   template:
     src: .config/i3/i3lock.sh.j2
     dest: ~/.config/i3/i3lock.sh
-    mode: 0750
+    mode: 0755
   tags:
     - awesomewm
 
@@ -60,7 +61,7 @@
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
-    mode: 0640
+    mode: 0644
   loop:
     - { src: .config/awesome/rc.lua.j2, dest: ~/.config/awesome/rc.lua }
     - { src: .config/awesome/theme/theme.lua.j2, dest: ~/.config/awesome/theme/theme.lua }

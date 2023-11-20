@@ -98,7 +98,7 @@ keys = [
     ]),
     # PowerMenu via Keychords
     KeyChord([mod], "p", [
-        Key([], "l", lazy.spawn("i3lock -t -i {{ lookup('env', 'HOME') }}/Pictures/wallpapers/0001.png"), desc="Lock screen"),
+        Key([], "l", lazy.spawn("{{ lookup('env', 'HOME') }}/.config/i3/i3lock.sh"), desc="Lock screen"),
         Key([], "Return", lazy.spawn("{{ lookup('env', 'HOME') }}/.config/rofi/powermenu.sh"), desc="Launch powermenu")
     ])
 ]
