@@ -33,6 +33,14 @@
   tags:
     - qtile
 
+- name: Install and configure dunst
+  import_tasks: dunst.yml
+  tags:
+    - awesomewm
+    - i3
+    - qtile
+    - dunst
+
 - name: Deploy Wallpapers
   import_tasks: wallpapers.yml
   tags:
