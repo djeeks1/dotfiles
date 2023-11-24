@@ -1,0 +1,11 @@
+#!/bin/bash
+# {{ ansible_managed }}
+
+previewdir="$HOME/.config/ncmpcpp/previews"
+currentsong="$(mpc --format "$HOME"/Music/%file% current)"
+filename="$(echo "$currentsong" | awk -F '/' '{print "/"$2"/"$3"/"$4"/"$5"/"$6"/cover.jpg"}')"
+previewname="$previewdir/$(mpc --format %album% current | base64).png"
+
+[ -e "$previewname" ] || ffmpeg -y -i "$filename" -an -vf scale=128:128 "$previewname" > /dev/null 2>&1
+
+dunstify -r 27072 "Now Playing" "$(mpc --format '%title% \n%artist% - %album%' current)" -i "$previewname"

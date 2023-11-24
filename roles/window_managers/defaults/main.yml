@@ -9,6 +9,7 @@ awesomewm_arc_icon_url: "https://github.com/horst3180/arc-icon-theme"
 wallpapers_repo_url: "git@github.com:djeeks1/wallpapers.git"
 
 mpd_packages:
+  - mpc
   - mpd
   - ncmpcpp
 
