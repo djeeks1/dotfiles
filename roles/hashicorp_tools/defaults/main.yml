@@ -1,4 +1,5 @@
 ---
 hashicorp_tools:
+  - vagrant
   - packer
   - terraform
