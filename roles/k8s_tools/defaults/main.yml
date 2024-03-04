@@ -1,4 +1,6 @@
 ---
+k8s_version: "1.28"
+
 k9s:
-  url: https://github.com/derailed/k9s/releases/download/v0.27.3/k9s_Linux_amd64.tar.gz
-  theme: https://raw.githubusercontent.com/derailed/k9s/master/skins/one_dark.yml
+  url: https://github.com/derailed/k9s/releases/download/v0.28.2/k9s_Linux_amd64.tar.gz
+  theme: https://raw.githubusercontent.com/derailed/k9s/master/skins/one-dark.yaml
