@@ -19,7 +19,6 @@
     - ~/.config/qtile
     - ~/Pictures
     - ~/git
-    - ~/virtualenvs
     - /usr/share/xsessions
   tags:
     - qtile

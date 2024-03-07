@@ -29,6 +29,24 @@
     - apt
     - tools
 
+- name: Create virtualenvs directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+  loop:
+    - ~/virtualenvs
+    - ~/virtualenvs/default
+  tags:
+    - bashrc
+    - tools
+
+- name: Create default virtualenv
+  shell: "python3 -m venv ~/virtualenvs/default"
+  tags:
+    - bashrc
+    - tools
+
 - name: Update .bashrc file
   template:
     src: .bashrc.j2

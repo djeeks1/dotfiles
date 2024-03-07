@@ -1,6 +1,6 @@
 ---
 install_awesomewm: false
-install_i3: true
+install_i3: false
 install_qtile: true
 
 awesomewm_widget_url: "https://github.com/streetturtle/awesome-wm-widgets.git"
