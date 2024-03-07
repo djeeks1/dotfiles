@@ -21,6 +21,12 @@
         - fonts-powerline
         - fonts-noto-color-emoji
 
+    - name: Allow bitmap in fonts
+      become: true
+      file:
+        path: /etc/fonts/conf.d/70-no-bitmaps.conf
+        state: absent
+
     - name: Ensure .config directory exists
       file:
         path: ~/.config
