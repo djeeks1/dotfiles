@@ -8,7 +8,39 @@
     - firefox
     - web-browsers
 
-- name: Install Firefox from unstable repo
+- name: Install Mozilla repository's key 
+  become: true
+  get_url:
+    url: https://packages.mozilla.org/apt/repo-signing-key.gpg
+    dest: /etc/apt/keyrings/packages.mozilla.org.asc
+    mode: 0644
+    force: true
+  tags:
+    - firefox
+    - web-browsers
+
+- name: Add Mozilla repository
+  become: true
+  apt_repository:
+    filename: mozilla.list
+    repo: 'deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc]
+      https://packages.mozilla.org/apt mozilla main'
+  tags:
+    - firefox
+    - web-browsers
+
+- name: Configure Apt to use Mozilla repository
+  become: true
+  template:
+    src: etc/apt/preferences.d/mozilla
+    dest: /etc/apt/preferences.d/mozilla
+    mode: 0644
+    owner: root
+  tags:
+    - firefox
+    - web-browsers
+
+- name: Install Firefox from Mozilla repository
   become: true
   apt:
     name: firefox
