@@ -1,0 +1,5 @@
+---
+mpd_packages:
+  - mpc
+  - mpd
+  - ncmpcpp
