@@ -23,6 +23,7 @@ i3_packages:
   - i3lock
   - nitrogen
   - xss-lock
+  - imagemagick
 
 qtile_packages:
   - compton
@@ -38,3 +39,4 @@ qtile_packages:
   - xinit
   - xserver-xorg
   - xss-lock
+  - imagemagick
