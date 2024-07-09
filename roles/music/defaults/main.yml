@@ -1,4 +1,6 @@
 ---
+install_mpd: false
+install_spotify: true
 mpd_packages:
   - mpc
   - mpd
