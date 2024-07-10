@@ -1,4 +1,7 @@
 ---
+debian_codename: "bookworm"
+install_optional: false
+
 default_packages:
   - alsa-utils
   - apt-transport-https
@@ -31,7 +34,6 @@ default_packages:
   - mtr
   - ncdu
   - network-manager
-  - nextcloud-desktop
   - nmap
   - pavucontrol
   - psmisc
@@ -58,3 +60,6 @@ default_packages:
   - wget
   - whois
   - xorg
+
+optional_packages:
+  - nextcloud-desktop
