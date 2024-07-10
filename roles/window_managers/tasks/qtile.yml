@@ -47,6 +47,7 @@
     - iwlib
     - pulsectl_asyncio
     - python-mpd2
+    - dbus_next
   tags:
     - qtile
 
