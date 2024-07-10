@@ -25,6 +25,17 @@
   tags:
     - vim
 
+- name: Install nslint
+  become: true
+  apt:
+    name: nslint
+    state: present
+    update_cache: true
+  when:
+    ansible_distribution_major_version != "12"
+  tags:
+    - vim
+
 - name: Create yamllint conf dir
   file:
     path: ~/.config/yamllint

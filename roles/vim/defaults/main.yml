@@ -3,7 +3,6 @@ linter_packages:
   - ansible-lint
   - flake8
   - libb-lint-perl
-  - nslint
   - puppet-lint
   - pylint
   - shellcheck
