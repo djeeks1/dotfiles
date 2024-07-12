@@ -122,6 +122,13 @@ eval "$(direnv hook bash)"
 
 {% if install_devops_tools %}
 
+[[ -e ~/.kube/config ]] && KUBECONFIG=~/.kube/config
+for file in  ~/.kube/*.yml; do
+  [[ -e $file ]] || break
+  if [[ -z "$KUBECONFIG" ]]; then KUBECONFIG=$file; else KUBECONFIG=$KUBECONFIG:$file; fi
+done
+export KUBECONFIG=$KUBECONFIG
+
 source <(kubectl completion bash)
 alias k=kubectl
 complete -o default -F __start_kubectl k
