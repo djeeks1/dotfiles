@@ -22,6 +22,7 @@ default_packages:
   - firmware-linux-nonfree
   - flameshot
   - fonts-font-awesome
+  - gcal
   - htop
   - hyphen-fr
   - ipcalc
