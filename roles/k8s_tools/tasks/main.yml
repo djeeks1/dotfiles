@@ -5,7 +5,7 @@
       get_url:
         url: "https://pkgs.k8s.io/core:/stable:/v{{ k8s_version }}/deb/Release.key"
         dest: /etc/apt/keyrings/kubernetes-apt-keyring
-        mode: 0644
+        mode: '0644'
         force: true
       register: k8s_key
 
@@ -30,7 +30,7 @@
       get_url:
         url: https://baltocdn.com/helm/signing.asc
         dest: /etc/apt/keyrings/helm
-        mode: 0644
+        mode: '0644'
         force: true
       register: helm_key
 
@@ -64,21 +64,28 @@
         dest: /usr/local/bin/k9s
         owner: root
         group: root
-        mode: 0755
+        mode: '0755'
 
     - name: Ensure k9s confdir exists
       become: false
       file:
         path: ~/.config/k9s
         state: directory
-        mode: 0755
+        mode: '0755'
 
-    - name: Configure k9s theme
+    - name: Get k9s theme
       become: false
       get_url:
-        url: "{{ k9s.theme }}"
-        dest: ~/.config/k9s/skin.yml
-        mode: 0644
+        url: "{{ k9s.theme_url }}"
+        dest: "~/.config/k9s/skins/{{ k9s.theme_name }}.yaml"
+        mode: '0644'
+
+    - name: Configure k9s
+      become: false
+      template:
+        src: .config/k9s/config.yaml.j2
+        dest: ~/.config/k9s/config.yaml
+        mode: '0644'
 
   become: true
   when:
