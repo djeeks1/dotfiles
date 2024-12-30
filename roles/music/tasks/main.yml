@@ -57,7 +57,7 @@
     - name: Get Spotify repository key
       become: true
       get_url:
-        url: https://download.spotify.com/debian/pubkey_6224F9941A8AA6D1.gpg
+        url: https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg
         dest: /etc/apt/keyrings/spotify.asc
         mode: '0644'
       register: spotify_key
