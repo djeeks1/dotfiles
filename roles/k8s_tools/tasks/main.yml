@@ -28,7 +28,7 @@
 
     - name: Get Helm repo key
       get_url:
-        url: https://baltocdn.com/helm/signing.asc
+        url: https://packages.buildkite.com/helm-linux/helm-debian/gpgkey
         dest: /etc/apt/keyrings/helm
         mode: '0644'
         force: true
@@ -43,7 +43,7 @@
       apt_repository:
         filename: helm
         repo: 'deb [signed-by=/etc/apt/keyrings/helm.gpg]
-          https://baltocdn.com/helm/stable/debian/ all main'
+          https://packages.buildkite.com/helm-linux/helm-debian/any/ any main'
 
     - name: install Helm
       apt:
