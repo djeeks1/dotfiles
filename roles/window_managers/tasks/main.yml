@@ -17,7 +17,7 @@
 - name: Install and configure i3
   import_tasks: i3.yml
   when:
-    - install_i3 
+    - install_i3
   tags:
     - i3
 
