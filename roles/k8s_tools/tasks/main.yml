@@ -69,9 +69,12 @@
     - name: Ensure k9s confdir exists
       become: false
       file:
-        path: ~/.config/k9s
+        path: "{{ item }}"
         state: directory
         mode: '0755'
+      loop:
+        - ~/.config/k9s
+        - ~/.config/k9s/skins
 
     - name: Get k9s theme
       become: false

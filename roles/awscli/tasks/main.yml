@@ -2,7 +2,9 @@
 - name: Install awscli
   block:
     - name: Check installed version
-      shell: "set -o pipefail; /usr/local/bin/aws --version | awk '{print $1}'"
+      ansible.builtin.shell:
+        cmd: "set -o pipefail; /usr/local/bin/aws --version | awk '{print $1}'"
+        executable: "/bin/bash"
       changed_when: false
       ignore_errors: true
       register: awscli_installed_version

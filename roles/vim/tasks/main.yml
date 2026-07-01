@@ -10,7 +10,7 @@
 
 - name: Update editor alternative
   become: true
-  alternatives:
+  community.general.alternatives:
     name: editor
     path: /usr/bin/vim
   tags:
