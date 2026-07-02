@@ -1,0 +1,5 @@
+---
+- name: Pack GPG file from ASCII key
+  ansible.builtin.command:
+    cmd: gpg --dearmor /etc/apt/keyrings/download.docker.com
+  changed_when: false
