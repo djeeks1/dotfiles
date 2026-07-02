@@ -1,5 +1,9 @@
 ---
 - name: Install Starship Prompt
+  when:
+    - install_starship
+  tags:
+    - starship
   block:
     - name: Install Starship Prompt
       become: true
@@ -9,7 +13,7 @@
         remote_src: true
         owner: root
         group: staff
-        mode: 0755
+        mode: '0755'
 
     - name: Install glyph rendering fonts
       become: true
@@ -28,14 +32,10 @@
       ansible.builtin.file:
         path: ~/.config
         state: directory
-        mode: 0750
+        mode: '0750'
 
     - name: Set Starship configuration
       ansible.builtin.template:
         src: .config/starship.toml.j2
         dest: ~/.config/starship.toml
-        mode: 0640
-  when:
-    - install_starship
-  tags:
-    - starship
+        mode: '0640'
