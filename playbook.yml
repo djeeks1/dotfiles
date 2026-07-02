@@ -6,7 +6,6 @@
     - window_managers
     - kitty
     - starship
-    - vim
     - web_browsers
     - hashicorp_tools
     - docker
