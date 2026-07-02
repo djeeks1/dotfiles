@@ -1,18 +1,35 @@
 ---
 - name: Setting sources.list
   become: true
-  template:
+  ansible.builtin.template:
     src: etc/apt/sources.list.j2
     dest: /etc/apt/sources.list
     mode: '0644'
+  when: ansible_facts[distribution] == 'Debian'
+  tags:
+    - apt
+    - tools
+
+- name: Set tools_full_packages
+  ansible.builtin.set_fact:
+    tools_full_packages: "{{ tools_default_packages }}"
+  when: ansible_facts[distribution] == 'Ubuntu'
+  tags:
+    - apt
+    - tools
+
+- name: Set tools_full_packages
+  ansible.builtin.set_fact:
+    tools_full_packages: "{{ tools_default_packages + tools_additional_packages }}"
+  when: ansible_facts[distribution] == 'Debian'
   tags:
     - apt
     - tools
 
 - name: Install packages
   become: true
-  apt:
-    name: "{{ default_packages }}"
+  ansible.builtin.apt:
+    name: "{{ tools_full_packages }}"
     state: present
     update_cache: true
   tags:
@@ -21,18 +38,18 @@
 
 - name: Install optional packages
   become: true
-  apt:
-    name: "{{ optional_packages }}"
+  ansible.builtin.apt:
+    name: "{{ tools_optional_packages }}"
     state: present
     update_cache: true
   when:
-    - install_optional
+    - tools_install_optional
   tags:
     - apt
     - tools
 
 - name: Create virtualenvs directory
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     mode: '0755'
@@ -44,13 +61,15 @@
     - tools
 
 - name: Create default virtualenv
-  shell: "python3 -m venv ~/virtualenvs/default"
+  ansible.builtin.command:
+    cmd: "python3 -m venv ~/virtualenvs/default"
+  changed_when: false
   tags:
     - bashrc
     - tools
 
 - name: Update .bashrc file
-  template:
+  ansible.builtin.template:
     src: .bashrc.j2
     dest: ~/.bashrc
     mode: '0640'
@@ -59,7 +78,7 @@
     - tools
 
 - name: Update PATH with user bin
-  template:
+  ansible.builtin.template:
     src: .xsessionrc.j2
     dest: ~/.xsessionrc
     mode: '0640'
@@ -68,7 +87,7 @@
     - tools
 
 - name: Ensure .ssh directory exists
-  file:
+  ansible.builtin.file:
     path: ~/.ssh
     state: directory
     mode: '0700'
@@ -77,7 +96,7 @@
     - tools
 
 - name: Set SSH options
-  template:
+  ansible.builtin.template:
     src: .ssh/config.j2
     dest: ~/.ssh/config
     mode: '0600'
@@ -86,7 +105,7 @@
     - tools
 
 - name: Configure Git globally
-  template:
+  ansible.builtin.template:
     src: .gitconfig.j2
     dest: ~/.gitconfig
     mode: '0640'
@@ -95,7 +114,7 @@
     - tools
 
 - name: Create config dir
-  file:
+  ansible.builtin.file:
     path: ~/.config/direnv
     state: directory
     mode: '0700'
@@ -104,7 +123,7 @@
     - tools
 
 - name: Configure direnv
-  template:
+  ansible.builtin.template:
     src: .config/direnv/direnv.toml.j2
     dest: ~/.config/direnv/direnv.toml
     mode: '0640'

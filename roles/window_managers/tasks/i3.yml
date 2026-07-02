@@ -1,18 +1,18 @@
 ---
 - name: Install i3
   become: true
-  apt:
-    name: "{{ i3_packages }}"
+  ansible.builtin.apt:
+    name: "{{ window_managers_i3_packages }}"
     state: present
     update_cache: true
   tags:
     - i3
 
 - name: Create i3 folders
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    mode: 0755
+    mode: '0755'
   loop:
     - ~/.config
     - ~/.config/i3
@@ -21,17 +21,17 @@
     - i3
 
 - name: Deploy i3lock script
-  template:
+  ansible.builtin.template:
     src: .config/i3/i3lock.sh.j2
     dest: ~/.config/i3/i3lock.sh
-    mode: 0755
+    mode: '0755'
   tags:
     - i3
 
 - name: Deploy i3 config file
-  template:
+  ansible.builtin.template:
     src: .config/i3/config.j2
     dest: ~/.config/i3/config
-    mode: 0644
+    mode: '0644'
   tags:
     - i3

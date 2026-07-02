@@ -1,5 +1,5 @@
 ---
-hashicorp_tools:
+hashicorp_tools_packages:
   - vagrant
   - packer
   - terraform

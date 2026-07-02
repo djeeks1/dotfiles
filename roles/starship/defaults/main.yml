@@ -1,3 +1,7 @@
 ---
-starship:
+starship_defaults:
   url: https://github.com/starship/starship/releases/latest/download/starship-x86_64-unknown-linux-gnu.tar.gz
+
+starship_font_dependencies:
+  - fonts-powerline
+  - fonts-noto-color-emoji

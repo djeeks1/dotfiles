@@ -1,5 +1,9 @@
 ---
 - name: Install awscli
+  when:
+    - install_devops_tools
+  tags:
+    - awscli
   block:
     - name: Check installed version
       ansible.builtin.shell:
@@ -10,30 +14,32 @@
       register: awscli_installed_version
 
     - name: Unzip archive
-      unarchive:
+      ansible.builtin.unarchive:
         src: https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip
         dest: /tmp
         remote_src: true
       changed_when: false
 
     - name: Check latest version
-      shell: /tmp/aws/dist/aws --version | awk '{print $1}'
+      ansible.builtin.shell:
+        cmd: "set -o pipefail; /tmp/aws/dist/aws --version | awk '{print $1}'"
+        executable: /bin/bash
       register: awscli_latest_version
       changed_when: false
       when: awscli_installed_version.rc == 0
 
     - name: Install awscli
       become: true
-      command: /tmp/aws/install -i /usr/local/aws-cli -b /usr/local/bin
+      ansible.builtin.command:
+        cmd: /tmp/aws/install -i /usr/local/aws-cli -b /usr/local/bin
+      changed_when: false
       when: awscli_installed_version.rc != 0
 
     - name: Update awscli
       become: true
-      command: /tmp/aws/install -u -i /usr/local/aws-cli -b /usr/local/bin
+      ansible.builtin.command:
+        cmd: /tmp/aws/install -u -i /usr/local/aws-cli -b /usr/local/bin
+      changed_when: false
       when:
         - awscli_installed_version.rc == 0
         - awscli_latest_version.stdout != awscli_installed_version.stdout
-  when:
-    - install_devops_tools
-  tags:
-    - awscli

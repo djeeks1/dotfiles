@@ -1,7 +1,7 @@
 ---
 - name: Install kitty
   become: true
-  apt:
+  ansible.builtin.apt:
     name: kitty
     state: present
     update_cache: true
@@ -9,10 +9,10 @@
     - kitty
 
 - name: Create kitty folders
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    mode: 0750
+    mode: '0750'
   loop:
     - ~/.config
     - ~/.config/kitty
@@ -20,15 +20,16 @@
     - kitty
 
 - name: Deploy kitty config file
-  template:
+  ansible.builtin.template:
     src: .config/kitty/kitty.conf.j2
     dest: ~/.config/kitty/kitty.conf
-    mode: 0640
+    mode: '0640'
   tags:
     - kitty
 
 - name: Set default theme
-  shell: kitty +kitten themes "{{ kitty_default_theme }}"
+  ansible.builtin.command:
+    cmd: kitty +kitten themes "{{ kitty_default_theme }}"
   changed_when: false
   tags:
     - kitty
