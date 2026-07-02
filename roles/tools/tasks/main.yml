@@ -5,13 +5,13 @@
     src: etc/apt/sources.list.j2
     dest: /etc/apt/sources.list
     mode: '0644'
-  when: ansible_facts[distribution] == 'Debian' 
+  when: ansible_facts[distribution] == 'Debian'
   tags:
     - apt
     - tools
 
 - name: Set tools_full_packages
-  ansible.builtin.set_facts:
+  ansible.builtin.set_fact:
     tools_full_packages: "{{ tools_default_packages }}"
   when: ansible_facts[distribution] == 'Ubuntu'
   tags:
@@ -19,7 +19,7 @@
     - tools
 
 - name: Set tools_full_packages
-  ansible.builtin.set_facts:
+  ansible.builtin.set_fact:
     tools_full_packages: "{{ tools_default_packages + tools_additional_packages }}"
   when: ansible_facts[distribution] == 'Debian'
   tags:
@@ -61,7 +61,9 @@
     - tools
 
 - name: Create default virtualenv
-  ansible.builtin.shell: "python3 -m venv ~/virtualenvs/default"
+  ansible.builtin.command:
+    cmd: "python3 -m venv ~/virtualenvs/default"
+  changed_when: false
   tags:
     - bashrc
     - tools
