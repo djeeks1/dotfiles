@@ -1,13 +1,10 @@
 ---
-debian_codename: "bookworm"
-install_optional: false
+tools_install_optional: false
 
-default_packages:
+tools_default_packages:
   - alsa-utils
   - apt-transport-https
-  - autorandr
   - bash-completion
-  - bluez-firmware
   - build-essential
   - ca-certificates
   - ccze
@@ -17,10 +14,6 @@ default_packages:
   - dnsutils
   - evince
   - filezilla
-  - firmware-linux
-  - firmware-linux-free
-  - firmware-linux-nonfree
-  - flameshot
   - fonts-font-awesome
   - gcal
   - htop
@@ -36,22 +29,17 @@ default_packages:
   - ncdu
   - network-manager
   - nmap
-  - pavucontrol
   - psmisc
-  - pulseaudio
-  - pulseaudio-module-bluetooth
   - pwgen
   - python3-packaging
   - python3-pip
   - python3-venv
-  - ristretto
   - screen
   - sslscan
   - strace
   - sysstat
   - tcpdump
   - telnet
-  - thunar
   - traceroute
   - tig
   - tree
@@ -59,7 +47,20 @@ default_packages:
   - vlc
   - wget
   - whois
+
+tools_additional_packages:
+  - autorandr
+  - bluez-firmware
+  - firmware-linux
+  - firmware-linux-free
+  - firmware-linux-nonfree
+  - flameshot
+  - pavucontrol
+  - pulseaudio
+  - pulseaudio-module-bluetooth
+  - ristretto
+  - thunar
   - xorg
 
-optional_packages:
+tools_optional_packages:
   - nextcloud-desktop
