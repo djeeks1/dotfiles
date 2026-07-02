@@ -1,65 +1,66 @@
 ---
 - name: Install kubernetes tools
+  become: true
+  when:
+    - install_devops_tools
+  tags:
+    - k8s_tools
   block:
     - name: Get kubernetes repo key
-      get_url:
-        url: "https://pkgs.k8s.io/core:/stable:/v{{ k8s_version }}/deb/Release.key"
+      ansible.builtin.get_url:
+        url: "https://pkgs.k8s.io/core:/stable:/v{{ k8s_tools_k8s_version }}/deb/Release.key"
         dest: /etc/apt/keyrings/kubernetes-apt-keyring
         mode: '0644'
         force: true
-      register: k8s_key
+      notify: Pack k8s GPG file from ASCII key
 
-    - name: Pack GPG file from ASCII key
-      shell: gpg --dearmor /etc/apt/keyrings/kubernetes-apt-keyring
-      when:
-        - k8s_key.changed
+    - name: Pack GPG file right now
+      ansible.builtin.meta: flush_handlers
 
     - name: Add kubernetes repo
-      apt_repository:
+      ansible.builtin.apt_repository:
         filename: kubernetes
         repo: "deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg]
-          https://pkgs.k8s.io/core:/stable:/v{{ k8s_version }}/deb/ /"
+          https://pkgs.k8s.io/core:/stable:/v{{ k8s_tools_k8s_version }}/deb/ /"
 
     - name: Install kubectl
-      apt:
+      ansible.builtin.apt:
         name: kubectl
         state: present
         update_cache: true
 
     - name: Get Helm repo key
-      get_url:
+      ansible.builtin.get_url:
         url: https://packages.buildkite.com/helm-linux/helm-debian/gpgkey
         dest: /etc/apt/keyrings/helm
         mode: '0644'
         force: true
-      register: helm_key
+      notify: Pack Helm GPG file from ASCII key
 
-    - name: Pack GPG file from ASCII key
-      shell: gpg --dearmor /etc/apt/keyrings/helm
-      when:
-        - helm_key.changed
+    - name: Pack GPG file right now
+      ansible.builtin.meta: flush_handlers
 
     - name: Add Helm repository
-      apt_repository:
+      ansible.builtin.apt_repository:
         filename: helm
         repo: 'deb [signed-by=/etc/apt/keyrings/helm.gpg]
           https://packages.buildkite.com/helm-linux/helm-debian/any/ any main'
 
-    - name: install Helm
-      apt:
+    - name: Install Helm
+      ansible.builtin.apt:
         name: helm
         state: present
         update_cache: true
 
     - name: Get k9s archive
-      unarchive:
-        src: "{{ k9s.url }}"
+      ansible.builtin.unarchive:
+        src: "{{ k8s_tools_k9s.url }}"
         dest: /tmp/
         remote_src: true
         owner: root
 
     - name: Move k9s to PATH
-      copy:
+      ansible.builtin.copy:
         src: /tmp/k9s
         dest: /usr/local/bin/k9s
         owner: root
@@ -68,7 +69,7 @@
 
     - name: Ensure k9s confdir exists
       become: false
-      file:
+      ansible.builtin.file:
         path: "{{ item }}"
         state: directory
         mode: '0755'
@@ -78,20 +79,14 @@
 
     - name: Get k9s theme
       become: false
-      get_url:
-        url: "{{ k9s.theme_url }}"
-        dest: "~/.config/k9s/skins/{{ k9s.theme_name }}.yaml"
+      ansible.builtin.get_url:
+        url: "{{ k8s_tools_k9s.theme_url }}"
+        dest: "~/.config/k9s/skins/{{ k8s_tools_k9s.theme_name }}.yaml"
         mode: '0644'
 
     - name: Configure k9s
       become: false
-      template:
+      ansible.builtin.template:
         src: .config/k9s/config.yaml.j2
         dest: ~/.config/k9s/config.yaml
         mode: '0644'
-
-  become: true
-  when:
-    - install_devops_tools
-  tags:
-    - k8s_tools

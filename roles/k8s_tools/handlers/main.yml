@@ -1,0 +1,10 @@
+---
+- name: Pack k8s GPG file from ASCII key
+  ansible.builtin.command:
+    cmd: gpg --dearmor /etc/apt/keyrings/kubernetes-apt-keyring
+  changed_when: false
+
+- name: Pack Helm GPG file from ASCII key
+  ansible.builtin.command:
+    cmd: gpg --dearmor /etc/apt/keyrings/helm
+  changed_when: false
