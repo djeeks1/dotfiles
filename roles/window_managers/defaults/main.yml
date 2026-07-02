@@ -1,14 +1,19 @@
 ---
-install_awesomewm: false
-install_i3: false
-install_qtile: true
+window_managers_install_awesomewm: false
+window_managers_install_i3: false
+window_managers_install_qtile: false
 
-awesomewm_widget_url: "https://github.com/streetturtle/awesome-wm-widgets.git"
-awesomewm_arc_icon_url: "https://github.com/horst3180/arc-icon-theme"
+window_managers_awesomewm_widget_url: "https://github.com/streetturtle/awesome-wm-widgets.git"
+window_managers_awesomewm_widget_version: "28da705c60c01235899309d5cd6c2e7e727db498"
+window_managers_awesomewm_arc_icon_url: "https://github.com/horst3180/arc-icon-theme"
+window_managers_awesomewm_arc_icon_version: "20161122"
 
-wallpapers_repo_url: "git@github.com:djeeks1/wallpapers.git"
+window_managers_qtile_version: "v0.36.0"
 
-awesomewm_packages:
+window_managers_wallpapers_repo_url: "git@github.com:djeeks1/wallpapers.git"
+window_managers_wallpapers_repo_version: "v0.0.1"
+
+window_managers_awesomewm_packages:
   - awesome
   - awesome-extra
   - compton
@@ -17,7 +22,7 @@ awesomewm_packages:
   - nitrogen
   - xss-lock
 
-i3_packages:
+window_managers_i3_packages:
   - compton
   - i3
   - i3lock
@@ -25,7 +30,7 @@ i3_packages:
   - xss-lock
   - imagemagick
 
-qtile_packages:
+window_managers_qtile_packages:
   - compton
   - i3lock
   - libiw-dev

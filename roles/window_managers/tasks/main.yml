@@ -1,6 +1,8 @@
 ---
 - name: Install Display Manager
-  import_tasks: display_manager.yml
+  ansible.builtin.import_tasks: display_manager.yml
+  when:
+    - window_managers_install_i3 or window_managers_install_awesomewm or window_managers_install_qtile
   tags:
     - awesomewm
     - i3
@@ -8,28 +10,30 @@
     - display_manager
 
 - name: Install and configure AwesomeWM
-  import_tasks: awesomewm.yml
+  ansible.builtin.import_tasks: awesomewm.yml
   when:
-    - install_awesomewm
+    - window_managers_install_awesomewm
   tags:
     - awesomewm
 
 - name: Install and configure i3
-  import_tasks: i3.yml
+  ansible.builtin.import_tasks: i3.yml
   when:
-    - install_i3
+    - window_managers_install_i3
   tags:
     - i3
 
 - name: Install and configure qtile
-  import_tasks: qtile.yml
+  ansible.builtin.import_tasks: qtile.yml
   when:
-    - install_qtile
+    - window_managers_install_qtile
   tags:
     - qtile
 
 - name: Install and configure dunst
-  import_tasks: dunst.yml
+  ansible.builtin.import_tasks: dunst.yml
+  when:
+    - window_managers_install_i3 or window_managers_install_awesomewm or window_managers_install_qtile
   tags:
     - awesomewm
     - i3
@@ -37,16 +41,16 @@
     - dunst
 
 - name: Deploy Wallpapers
-  import_tasks: wallpapers.yml
+  ansible.builtin.import_tasks: wallpapers.yml
   tags:
     - awesomewm
     - i3
     - qtile
 
 - name: Install Rofi
-  import_tasks: rofi.yml
+  ansible.builtin.import_tasks: rofi.yml
   when:
-    - install_i3 or install_awesomewm or install_qtile
+    - window_managers_install_i3 or window_managers_install_awesomewm or window_managers_install_qtile
   tags:
     - awesomewm
     - i3
@@ -54,9 +58,9 @@
     - rofi
 
 - name: Install Polybar
-  import_tasks: polybar.yml
+  ansible.builtin.import_tasks: polybar.yml
   when:
-    - install_i3
+    - window_managers_install_i3
   tags:
     - i3
     - polybar

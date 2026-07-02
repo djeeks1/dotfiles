@@ -1,8 +1,9 @@
 ---
 - name: Clone wallpapers repository
-  git:
-    repo: "{{ wallpapers_repo_url }}"
+  ansible.builtin.git:
+    repo: "{{ window_managers_wallpapers_repo_url }}"
     dest: ~/Pictures/wallpapers
+    version: "{{ window_managers_wallpapers_repo_version }}"
   tags:
     - awesomewm
     - i3

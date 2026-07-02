@@ -1,7 +1,7 @@
 ---
 - name: Install rofi
   become: true
-  apt:
+  ansible.builtin.apt:
     name: rofi
     state: present
     update_cache: true
@@ -11,10 +11,10 @@
     - rofi
 
 - name: Create rofi config folder
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    mode: 0755
+    mode: '0755'
   loop:
     - ~/.config/rofi
   tags:
@@ -23,14 +23,14 @@
     - rofi
 
 - name: Deploy rofi config file
-  template:
+  ansible.builtin.template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"
     mode: "{{ item.mode }}"
   loop:
-    - { src: ".config/rofi/config.rasi.j2", dest: "~/.config/rofi/config.rasi", mode: "0644" }
-    - { src: ".config/rofi/powermenu.sh.j2", dest: "~/.config/rofi/powermenu.sh", mode: "0755" }
-    - { src: ".config/rofi/powermenu.rasi.j2", dest: "~/.config/rofi/powermenu.rasi", mode: "0644" }
+    - { src: ".config/rofi/config.rasi.j2", dest: "~/.config/rofi/config.rasi", mode: '0644' }
+    - { src: ".config/rofi/powermenu.sh.j2", dest: "~/.config/rofi/powermenu.sh", mode: '0755' }
+    - { src: ".config/rofi/powermenu.rasi.j2", dest: "~/.config/rofi/powermenu.rasi", mode: '0644' }
   tags:
     - awesomewm
     - i3

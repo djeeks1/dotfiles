@@ -1,7 +1,7 @@
 ---
 - name: Install polybar
   become: true
-  apt:
+  ansible.builtin.apt:
     name: polybar
     state: present
     update_cache: true
@@ -10,10 +10,10 @@
     - polybar
 
 - name: Create polybar folders
-  file:
+  ansible.builtin.file:
     path: "{{ item }}"
     state: directory
-    mode: 0755
+    mode: '0755'
   loop:
     - ~/.config
     - ~/.config/polybar
@@ -22,19 +22,19 @@
     - polybar
 
 - name: Deploy ploybar custom bluetooth script
-  template:
+  ansible.builtin.template:
     src: .config/polybar/bluetooth-status.sh.j2
     dest: ~/.config/polybar/bluetooth-status.sh
-    mode: 0755
+    mode: '0755'
   tags:
     - i3
     - polybar
 
 - name: Deploy polybar config file
-  template:
+  ansible.builtin.template:
     src: .config/polybar/config.j2
     dest: ~/.config/polybar/config
-    mode: 0644
+    mode: '0644'
   tags:
     - i3
     - polybar

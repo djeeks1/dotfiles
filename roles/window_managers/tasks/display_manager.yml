@@ -1,7 +1,7 @@
 ---
 - name: Install display manager
   become: true
-  apt:
+  ansible.builtin.apt:
     name: lightdm
     state: present
     update_cache: true
