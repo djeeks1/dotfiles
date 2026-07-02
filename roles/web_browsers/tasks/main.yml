@@ -1,61 +1,66 @@
 ---
 - name: Remove Firefox ESR
   become: true
-  apt:
+  ansible.builtin.apt:
     name: firefox-esr
     state: absent
+  when: ansible_facts[distribution] == 'Debian'
   tags:
     - firefox
     - web-browsers
 
-- name: Install Mozilla repository's key 
+- name: Install Mozilla repository's key
   become: true
-  get_url:
+  ansible.builtin.get_url:
     url: https://packages.mozilla.org/apt/repo-signing-key.gpg
     dest: /etc/apt/keyrings/packages.mozilla.org.asc
-    mode: 0644
+    mode: '0644'
     force: true
+  when: ansible_facts[distribution] == 'Debian'
   tags:
     - firefox
     - web-browsers
 
 - name: Add Mozilla repository
   become: true
-  apt_repository:
+  ansible.builtin.apt_repository:
     filename: mozilla.list
     repo: 'deb [signed-by=/etc/apt/keyrings/packages.mozilla.org.asc]
       https://packages.mozilla.org/apt mozilla main'
+  when: ansible_facts[distribution] == 'Debian'
   tags:
     - firefox
     - web-browsers
 
 - name: Configure Apt to use Mozilla repository
   become: true
-  template:
+  ansible.builtin.template:
     src: etc/apt/preferences.d/mozilla
     dest: /etc/apt/preferences.d/mozilla
-    mode: 0644
+    mode: '0644'
     owner: root
+  when: ansible_facts[distribution] == 'Debian'
   tags:
     - firefox
     - web-browsers
 
 - name: Install Firefox from Mozilla repository
   become: true
-  apt:
+  ansible.builtin.apt:
     name: firefox
     state: present
     update_cache: true
+  when: ansible_facts[distribution] == 'Debian'
   tags:
     - firefox
     - web-browsers
 
 - name: Add Google repository's key
   become: true
-  get_url:
+  ansible.builtin.get_url:
     url: https://dl.google.com/linux/linux_signing_key.pub
     dest: /etc/apt/keyrings/dl.google.com.pub
-    mode: 0644
+    mode: '0644'
     force: true
   tags:
     - google-chrome
@@ -63,7 +68,7 @@
 
 - name: Add Google repository
   become: true
-  apt_repository:
+  ansible.builtin.apt_repository:
     filename: google-chrome
     repo: 'deb [signed-by=/etc/apt/keyrings/dl.google.com.pub]
       http://dl.google.com/linux/chrome/deb/ stable main'
@@ -73,7 +78,7 @@
 
 - name: Install Google Chrome
   become: true
-  apt:
+  ansible.builtin.apt:
     name: google-chrome-stable
     state: present
     update_cache: true
