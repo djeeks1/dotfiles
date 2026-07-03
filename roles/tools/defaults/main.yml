@@ -6,12 +6,12 @@ tools_default_packages:
   - apt-transport-https
   - bash-completion
   - build-essential
+  - bind9-dnsutils
   - ca-certificates
   - ccze
   - cups
   - curl
   - direnv
-  - dnsutils
   - evince
   - filezilla
   - fonts-font-awesome
