@@ -12,7 +12,7 @@
         dest: /etc/apt/keyrings/apt.releases.hashicorp.com
         mode: '0644'
         force: true
-      notify: Pack GPG file from ASCII key
+      notify: Pack Hashicorp GPG file from ASCII key
 
     - name: Pack GPG file right now
       ansible.builtin.meta: flush_handlers
