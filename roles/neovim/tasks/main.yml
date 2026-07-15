@@ -1,0 +1,35 @@
+---
+- name: Install Neovim AppImage
+  become: true
+  ansible.builtin.get_url:
+    url: https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.appimage
+    dest: /usr/local/bin/nvim
+    mode: '0755'
+  tags:
+    - neovim
+
+- name: Create neovim configuration folders
+  ansible.builtin.file:
+    path: "{{ item }}"
+    state: directory
+    mode: '0755'
+  loop:
+    - ~/.config/nvim
+    - ~/.config/nvim/lua/core
+    - ~/.config/nvim/lua/plugins
+  tags:
+    - neovim
+
+- name: Configure Neovim
+  ansible.builtin.template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    mode: '0644'
+  loop:
+    - { src: .config/nvim/init.lua.j2, dest: ~/.config/nvim/init.lua }
+    - { src: .config/nvim/lua/core/init.lua.j2, dest: ~/.config/nvim/lua/core/init.lua }
+    - { src: .config/nvim/lua/core/options.lua.j2, dest: ~/.config/nvim/lua/core/options.lua }
+    - { src: .config/nvim/lua/core/keymaps.lua.j2, dest: ~/.config/nvim/lua/core/keymaps.lua }
+    - { src: .config/nvim/lua/plugins/init.lua.j2, dest: ~/.config/nvim/lua/plugins/init.lua }
+  tags:
+    - neovim

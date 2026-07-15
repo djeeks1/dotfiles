@@ -1,0 +1,49 @@
+-- {{ ansible_managed }}
+
+-- line number
+vim.opt.number = true
+vim.opt.relativenumber = true
+
+-- tabs & indentation
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.expandtab = true
+vim.opt.autoindent = true
+
+-- search
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = true
+
+-- cursor line
+vim.opt.cursorline = true
+
+-- termguicolors est nécessaire pour que les thèmes modernes fonctionnent
+vim.opt.termguicolors = true
+vim.opt.background = "dark" -- dark ou light en fonction de votre préférence
+vim.opt.signcolumn = "yes" -- affiche une colonne en plus à gauche pour afficher les signes (évite de décaler le texte)
+
+-- return
+vim.opt.backspace = "indent,eol,start"
+
+-- clipboard
+vim.opt.clipboard = "unnamedplus"
+
+-- windows split
+vim.opt.splitright = true
+vim.opt.splitbelow = true
+
+vim.opt.swapfile = false
+
+vim.opt.undofile = true
+
+vim.opt.iskeyword:append("-")
+
+-- special chars display
+vim.opt.list = true
+vim.opt.listchars:append({ nbsp = "␣", trail = "•", precedes = "«", extends = "»", tab = "> " })
+
+-- NetRW
+vim.g.netrw_browse_split = 0
+vim.g.netrw_banner = 0
+vim.g.netrw_winsize = 25
