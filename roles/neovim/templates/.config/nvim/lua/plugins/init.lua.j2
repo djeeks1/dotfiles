@@ -1,0 +1,86 @@
+-- {{ ansible_managed }}
+
+-- FIX : todo-comments and telescope not working
+-- TODO : check tree-sitter and implement lsp and nvim-cmp
+
+vim.pack.add({
+  "https://github.com/navarasu/onedark.nvim",
+  "https://github.com/nvim-tree/nvim-web-devicons", -- dependency for lualine
+  "https://github.com/nvim-lualine/lualine.nvim",
+  "https://github.com/lewis6991/gitsigns.nvim",
+  "https://github.com/folke/which-key.nvim",
+  "https://github.com/nvim-lua/plenary.nvim", -- dependency for telescope and todo-comments
+  "https://github.com/folke/todo-comments.nvim",
+  "https://github.com/nvim-telescope/telescope.nvim",
+  "https://github.com/romus204/tree-sitter-manager.nvim",
+})
+
+-- One Dark Theme
+
+require('onedark').setup {
+  style = 'dark'
+}
+require('onedark').load()
+
+-- Lualine
+
+require('lualine').setup {
+  options = {
+    icons_enabled = true,
+    theme = 'auto',
+    component_separators = { left = '', right = ''},
+    section_separators = { left = '', right = ''},
+    disabled_filetypes = {
+      statusline = {},
+      winbar = {},
+    },
+    ignore_focus = {},
+    always_divide_middle = true,
+    always_show_tabline = true,
+    globalstatus = false,
+    refresh = {
+      statusline = 1000,
+      tabline = 1000,
+      winbar = 1000,
+      refresh_time = 16, -- ~60fps
+      events = {
+        'WinEnter',
+        'BufEnter',
+        'BufWritePost',
+        'SessionLoadPost',
+        'FileChangedShellPost',
+        'VimResized',
+        'Filetype',
+        'CursorMoved',
+        'CursorMovedI',
+        'ModeChanged',
+      },
+    }
+  },
+  sections = {
+    lualine_a = {'mode'},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
+    lualine_c = {'filename'},
+    lualine_x = {'encoding', 'fileformat', 'filetype'},
+    lualine_y = {'progress'},
+    lualine_z = {'location'}
+  },
+  inactive_sections = {
+    lualine_a = {},
+    lualine_b = {},
+    lualine_c = {'filename'},
+    lualine_x = {'location'},
+    lualine_y = {},
+    lualine_z = {}
+  },
+  tabline = {},
+  winbar = {},
+  inactive_winbar = {},
+  extensions = {}
+}
+
+-- TreeSitter
+require("tree-sitter-manager").setup()
+
+-- Telescope
+require('telescope').setup()

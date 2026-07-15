@@ -12,3 +12,4 @@
     - hashicorp_tools
     - k8s_tools
     - awscli
+    - neovim
