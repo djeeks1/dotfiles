@@ -1,0 +1,19 @@
+---
+- name: Get glab binary
+  ansible.builtin.unarchive:
+    src: "https://gitlab.com/gitlab-org/cli/-/releases/v{{ glab_version }}/downloads/glab_{{ glab_version }}_linux_amd64.tar.gz"
+    dest: /tmp
+    remote_src: true
+  tags:
+    - glab
+
+- name: Move glab to PATH
+  become: true
+  ansible.builtin.copy:
+    src: /tmp/bin/glab
+    dest: /usr/local/bin/glab
+    owner: root
+    group: root
+    mode: '0755'
+  tags:
+    - glab
