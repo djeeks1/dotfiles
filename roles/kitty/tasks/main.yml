@@ -1,29 +1,77 @@
 ---
-- name: Install kitty
-  become: true
-  ansible.builtin.apt:
-    name: kitty
-    state: present
-    update_cache: true
+- name: Check Kitty current version
+  ansible.builtin.shell:
+    cmd: "set -o pipefail; kitty --version |awk '{ print $2 }'"
+    executable: /bin/bash
+  register: kitty_current_version
+  failed_when: false
+  changed_when: false
   tags:
     - kitty
 
-- name: Create kitty folders
+- name: Create Kitty temp folder
+  ansible.builtin.tempfile:
+    state: directory
+    prefix: kitty_
+  register: kitty_temp_folder
+  when: kitty_current_version.stdout != kitty_version
+  tags:
+    - kitty
+
+- name: Get Kitty
+  ansible.builtin.unarchive:
+    src: "https://github.com/kovidgoyal/kitty/releases/download/v{{ kitty_version }}/kitty-{{ kitty_version }}-x86_64.txz"
+    dest: "{{ kitty_temp_folder.path }}"
+    remote_src: true
+  when: kitty_current_version.stdout != kitty_version
+  tags:
+    - kitty
+
+- name: Create Kitty folders
   ansible.builtin.file:
     path: "{{ item }}"
     state: directory
     mode: '0750'
   loop:
+    - ~/.local/kitty.app
+    - ~/.local/bin
     - ~/.config
     - ~/.config/kitty
   tags:
     - kitty
 
+- name: Move Kitty to PATH
+  ansible.builtin.copy:
+    src: "{{ kitty_temp_folder.path }}/"
+    dest: ~/.local/kitty.app
+    mode: '0755'
+    remote_src: true
+  when: kitty_current_version.stdout != kitty_version
+  tags:
+    - kitty
+
+- name: Create Kitty symlink
+  ansible.builtin.file:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    state: link
+    mode:
+  loop:
+    - { src: '~/.local/kitty.app/bin/kitty', dest: '~/.local/bin/kitty' }
+    - { src: '~/.local/kitty.app/bin/kitten', dest: '~/.local/bin/kitten' }
+  tags:
+    - kitty
+
 - name: Deploy kitty config file
   ansible.builtin.template:
-    src: .config/kitty/kitty.conf.j2
-    dest: ~/.config/kitty/kitty.conf
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
     mode: '0640'
+  loop:
+    - { src: '.local/share/applications/kitty.desktop.j2', dest: '~/.local/share/applications/kitty.desktop' }
+    - { src: '.local/share/applications/kitty-open.desktop.j2', dest: '~/.local/share/applications/kitty-open.desktop' }
+    - { src: '.config/xdg-terminals.list.j2', dest: '~/.config/xdg-terminals.list' }
+    - { src: '.config/kitty/kitty.conf.j2', dest: '~/.config/kitty/kitty.conf' }
   tags:
     - kitty
 
