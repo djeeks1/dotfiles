@@ -4,8 +4,8 @@
     cmd: "set -o pipefail; kitty --version |awk '{ print $2 }'"
     executable: /bin/bash
   register: kitty_current_version
-  failed_when: false
   changed_when: false
+  ignore_errors: true
   tags:
     - kitty
 
